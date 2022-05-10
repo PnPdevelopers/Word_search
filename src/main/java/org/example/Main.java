@@ -23,7 +23,7 @@ public class Main {
 
     public static void main(String[] args) throws Exception{
         String image_path = "wordsearch.jpg";
-        String data_path = "C:\\Users\\gabri\\IdeaProjects\\Word_Search\\tessdata";
+        String data_path = "tessdata";
         image_procs.OCR(image_path,data_path,false);
 }
 }

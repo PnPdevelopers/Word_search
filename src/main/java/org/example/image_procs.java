@@ -32,13 +32,13 @@ public class image_procs {
         Graphics2D graphics = blackAndWhiteImg.createGraphics();
         graphics.drawImage(croped, 0, 0, null);
 
-        JLabel picLabel = new JLabel(new ImageIcon(blackAndWhiteImg));
+        /*JLabel picLabel = new JLabel(new ImageIcon(blackAndWhiteImg));
         JPanel jPanel = new JPanel();
         jPanel.add(picLabel);
         JFrame f = new JFrame();
         f.setSize(new Dimension(blackAndWhiteImg.getWidth(), blackAndWhiteImg.getHeight()));
         f.add(jPanel);
-        f.setVisible(true);
+        f.setVisible(true);*/
 
 
         int white_count=0;
