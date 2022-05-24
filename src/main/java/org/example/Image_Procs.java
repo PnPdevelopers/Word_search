@@ -25,16 +25,19 @@ public class Image_Procs {
         ITesseract instance = new Tesseract();
         BufferedImage picture = ImageIO.read(new File(image_path));
         instance.setDatapath(data_path);
+        for (Word word : instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE)) {
+
+        System.out.println(word);
 
 
-
-        Graphics2D g = (Graphics2D) picture.getGraphics();
+        /*Graphics2D g = (Graphics2D) picture.getGraphics();
         g.setStroke(new BasicStroke(3));
         g.setColor(Color.BLUE);
-        int count=0;
+        int count=0;*/
+        /*
         for (Word word : instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_SYMBOL)) {
             //String image_path,Rectangle bound,int scale, int threshold
-            if (/*true*/true) {
+            if (true) {
                 Rectangle rect = word.getBoundingBox();
 
 
@@ -44,24 +47,27 @@ public class Image_Procs {
                 g.drawString(word.getText() + "-" + df.format(word.getConfidence()), (int) rect.getMinX() - 10, (int) rect.getMaxY() + 20);
                 g.draw(rect);}
 
-            }}
-        if (debug){
+            }}*/
+
+
+       /* if (debug){
         JLabel picLabel = new JLabel(new ImageIcon(picture));
         JPanel jPanel = new JPanel();
         jPanel.add(picLabel);
         JFrame f = new JFrame();
         f.setSize(new Dimension(picture.getWidth(), picture.getHeight()));
         f.add(jPanel);
-        f.setVisible(true);}
+        f.setVisible(true);}*/
 
 
-    }
 
+    }}
+/*
     //This colects the words in the Key.
     public static String[] OCR_Key(String image_path,String data_path,boolean debug){
         String[] temp = new String[0];
 
 
-    return(temp);}
+    return(temp);}*/
 
 }
