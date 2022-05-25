@@ -9,6 +9,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Image_Procs {
 
@@ -25,9 +27,27 @@ public class Image_Procs {
         ITesseract instance = new Tesseract();
         BufferedImage picture = ImageIO.read(new File(image_path));
         instance.setDatapath(data_path);
-        for (Word word : instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE)) {
+        List<Word> rows = new ArrayList<Word>(); //Initializes the List<Word> rows, which has an object for each line of the puzzle
+        rows = instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
+        
+        float max = 0;
+        for (Word word : rows) {
+            String line = word.getText();
+            line.replace('1','I');
+            line.replaceAll("\\s", "");
+            
+            if(word.getConfidence()>max){
+                max = word.getConfidence();
+            }
 
-        System.out.println(word);
+
+
+
+
+
+            System.out.println(word);
+        }
+        
 
 
         /*Graphics2D g = (Graphics2D) picture.getGraphics();
@@ -61,7 +81,7 @@ public class Image_Procs {
 
 
 
-    }}
+    }
 /*
     //This colects the words in the Key.
     public static String[] OCR_Key(String image_path,String data_path,boolean debug){
