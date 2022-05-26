@@ -9,6 +9,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.*;
+
 
 public class Image_Procs {
 
@@ -25,10 +30,22 @@ public class Image_Procs {
         ITesseract instance = new Tesseract();
         BufferedImage picture = ImageIO.read(new File(image_path));
         instance.setDatapath(data_path);
-        for (Word word : instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE)) {
+        List<Word> lines = instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
+        String newLine = "";
+        List<Integer> lengthsArr = new ArrayList<Integer>();
+        int[] lengths = new int[lines.size()];
 
-        System.out.println(word);
-
+        for (Word word : lines) {
+            newLine = word.getText();
+            newLine = newLine.replaceAll("1", "I");
+            newLine = newLine.replaceAll("\\s+", "");
+            System.out.print(newLine.length() + " ");
+            //System.out.println(newLine);
+            //System.out.println(word);
+            lengthsArr.add((int)newLine.length());
+            //convert arraylist to list[int]
+        }
+        System.out.println(mode(lengths));
 
         /*Graphics2D g = (Graphics2D) picture.getGraphics();
         g.setStroke(new BasicStroke(3));
@@ -61,7 +78,7 @@ public class Image_Procs {
 
 
 
-    }}
+    }
 /*
     //This colects the words in the Key.
     public static String[] OCR_Key(String image_path,String data_path,boolean debug){
@@ -69,5 +86,29 @@ public class Image_Procs {
 
 
     return(temp);}*/
+public static int mode(int []array)
+{
+    HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+    int max  = 1;
+    int temp = 0;
 
+    for(int i = 0; i < array.length; i++) {
+
+        if (hm.get(array[i]) != null) {
+
+            int count = hm.get(array[i]);
+            count++;
+            hm.put(array[i], count);
+
+            if(count > max) {
+                max  = count;
+                temp = array[i];
+            }
+        }
+
+        else
+            hm.put(array[i],1);
+    }
+    return temp;
+}
 }
