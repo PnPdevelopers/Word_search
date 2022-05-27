@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Image_Procs {
@@ -31,6 +32,7 @@ public class Image_Procs {
         rows = instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
         
         float max = 0;
+        
         for (Word word : rows) {
             String line = word.getText();
             line = line.replace('1','I'); //replaces the misread 1's to I's
@@ -89,5 +91,28 @@ public class Image_Procs {
 
 
     return(temp);}*/
+    public static int mode(int []array) {
+    HashMap<Integer,Integer> hm = new HashMap<Integer,Integer>();
+    int max  = 1;
+    int temp = 0;
 
+    for(int i = 0; i < array.length; i++) {
+
+        if (hm.get(array[i]) != null) {
+
+            int count = hm.get(array[i]);
+            count++;
+            hm.put(array[i], count);
+
+            if(count > max) {
+                max  = count;
+                temp = array[i];
+            }
+        }
+
+        else 
+            hm.put(array[i],1);
+    }
+    return temp;
+}
 }
