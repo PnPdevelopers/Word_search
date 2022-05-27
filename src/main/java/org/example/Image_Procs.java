@@ -33,8 +33,8 @@ public class Image_Procs {
         float max = 0;
         for (Word word : rows) {
             String line = word.getText();
-            line.replace('1','I');
-            line.replaceAll("\\s", "");
+            line = line.replace('1','I'); //replaces the misread 1's to I's
+            line = line.replaceAll("\\s", ""); //removes phantom spaces
             
             if(word.getConfidence()>max){
                 max = word.getConfidence();
@@ -45,7 +45,7 @@ public class Image_Procs {
 
 
 
-            System.out.println(word);
+            System.out.println(line);
         }
         
 
