@@ -3,10 +3,13 @@ package org.example;
 
 //find letter location
 //https://stackoverflow.com/questions/7314573/how-to-get-coordinates-of-recognized-characters#:~:text=Try%20the%20executable%20of%20tesseract.%20Use%20the%20command,the%20coordinates%20of%20each%20character%2C%20one%20per%20row.
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.swing.*;
 import java.awt.*;
 
-public class Main implements ActionListener{
+public class Main implements ActionListener {
 
     //Global Delcaration
     JFrame InputFrame;
@@ -34,7 +37,7 @@ public class Main implements ActionListener{
     public Main()
     {
         //Input JFrame which houses input for user to upload image of puzzle/key
-        inputFrame = new JFrame();
+        JFrame inputFrame = new JFrame();
         inputFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         inputFrame.setTitle("Upload Puzzle/Key Here");
         //arbitrary size for now
@@ -115,7 +118,9 @@ public class Main implements ActionListener{
         }
         else if (e.getSource() == submitButton)
         {
+            JComponent inputFrame;
             inputFrame.setVisible(false);
+            JComponent displayFrame;
             displayFrame.setVisible(true);
         }
     }

@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
+
 public class Image_Procs {
 
     public static boolean Detect_Valid(Word word, String[] proven, int place, boolean debug) {
@@ -28,6 +30,7 @@ public class Image_Procs {
         ITesseract instance = new Tesseract();
         BufferedImage picture = ImageIO.read(new File(image_path));
         instance.setDatapath(data_path);
+        instance.setPageSegMode(PSM_SINGLE_CHAR);
         List<Word> rows = new ArrayList<Word>(); //Initializes the List<Word> rows, which has an object for each line of the puzzle
         rows = instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
         
