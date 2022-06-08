@@ -6,11 +6,11 @@ package org.example;
 
 public class Main {
     //Had to change Main to not be static to account for the GUI. Just doing what the IDE told me as a suggestion.
-    public void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
         String image_path = "cross_puzzle_test.png";
         String data_path = "tessdata";
         Image_Procs.OCR_Char(image_path, data_path, true);
-        GUI.Main();
+        GUI.main(null);
     }
 }
 
