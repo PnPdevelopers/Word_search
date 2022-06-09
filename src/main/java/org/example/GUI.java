@@ -11,10 +11,11 @@ public class GUI implements ActionListener
     //The last time I wrote it, no errors showed up according to the IDE.
 
     //Initialize global mainframes for Input/Output Frames
-    JFrame inputFrame;
-    JFrame outputFrame;
+    JFrame mainFrame;
 
     //Initialize child panels to house things in frames
+    JPanel inputPanel;
+    JPanel outputPanel;
     JPanel inputPuzzle;
     JPanel inputKey;
     JPanel Submit;
@@ -27,6 +28,20 @@ public class GUI implements ActionListener
     JButton keyButton;
     JButton submitButton;
 
+    public void switchWindows(JPanel inputPanel)
+    {
+        //sets main frame to not visible
+        mainFrame.setVisible(false);
+        //removes existing GUI on display
+        mainFrame.getContentPane().removeAll();
+        //adds selected parameter GUI
+        mainFrame.getContentPane().add(inputPanel);
+        //repacks main frame
+        mainFrame.pack();
+        //sets as visible
+        mainFrame.setVisible(true);
+    }
+
     //Initialize Image icons for output frame
 
     public static void main(String[] args)
@@ -36,14 +51,16 @@ public class GUI implements ActionListener
 
     public GUI()
     {
-        //Locally declare input JFrame
-        JFrame inputFrame = new JFrame();
-        inputFrame.setDefaultCloseOperation(inputFrame.EXIT_ON_CLOSE);
-        inputFrame.setPreferredSize(new Dimension(700,700));
-        inputFrame.setTitle("Input Puzzle + Key Below");
-        inputFrame.setLayout(new BorderLayout());
+        //Locally declare main JFrame
+        JFrame mainFrame = new JFrame();
+        mainFrame.setDefaultCloseOperation(mainFrame.EXIT_ON_CLOSE);
+        mainFrame.setPreferredSize(new Dimension(700,700));
+        mainFrame.setTitle("Input Puzzle + Key Below");
 
         //Locally declare input JPanels
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new BorderLayout());
+
         JPanel inputPuzzle = new JPanel();
         inputPuzzle.setSize(250,250);
         inputPuzzle.setLayout(new GridLayout(3,0));
@@ -71,22 +88,20 @@ public class GUI implements ActionListener
         inputKey.add(keyButton);
         Submit.add(submitButton);
 
-        inputFrame.add(inputPuzzle, BorderLayout.EAST);
-        inputFrame.add(inputKey, BorderLayout.WEST);
-        inputFrame.add(Submit, BorderLayout.SOUTH);
+        inputPanel.add(inputPuzzle, BorderLayout.EAST);
+        inputPanel.add(inputKey, BorderLayout.WEST);
+        inputPanel.add(Submit, BorderLayout.SOUTH);
 
-        inputFrame.pack();
-        inputFrame.setVisible(true);
+        mainFrame.add(inputPanel);
+        mainFrame.pack();
+        mainFrame.setVisible(true);
         //
         //
         //
         //OUTPUT ------------------------------------------------------------------------------------------------------
         //Locally declare output JFrame
-        JFrame outputFrame = new JFrame();
-        outputFrame.setDefaultCloseOperation(inputFrame.EXIT_ON_CLOSE);
-        outputFrame.setPreferredSize(new Dimension(700,700));
-        outputFrame.setTitle("Output");
-        outputFrame.setLayout(new BorderLayout());
+        JPanel outputPanel = new JPanel();
+        outputPanel.setLayout(new BorderLayout());
 
         //locally declare output JPanels
         JPanel outputPuzzle = new JPanel();
@@ -97,15 +112,10 @@ public class GUI implements ActionListener
         JPanel outputKey = new JPanel();
         outputKey.setSize(250,250);
         outputKey.setLayout(new GridLayout(3,0));
-        outputKey.setBackground(Color.blue);
-
 
         //Add outputPanels to outputFrame
-        outputFrame.add(outputPuzzle, BorderLayout.WEST);
-        outputFrame.add(outputKey, BorderLayout.EAST);
-
-        outputFrame.pack();
-        outputFrame.setVisible(false);
+        outputPanel.add(outputPuzzle, BorderLayout.WEST);
+        outputPanel.add(outputKey, BorderLayout.EAST);
 
     }
 
@@ -123,8 +133,7 @@ public class GUI implements ActionListener
         {
             //SEND TO LOGIC
             System.out.println("Hello");
-            inputFrame.setVisible(false);
-            outputFrame.setVisible(true);
+            switchWindows(outputPanel);
         }
     }
 }
