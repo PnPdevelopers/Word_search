@@ -12,8 +12,12 @@ class GFG {
     static int[] x = { -1, -1, -1, 0, 0, 1, 1, 1 };
     static int[] y = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
+    static int eR = -1;
+    static int eC = -1;
+
+
     // This function searches in all 8-direction from point (row, col) in grid[][]
-    static boolean search2D(char[][] grid, int row, int col, String word){
+    static Boolean search2D(char[][] grid, int row, int col, String word){
         // If first character of word doesn't match with given starting point in grid.
         if (grid[row][col] != word.charAt(0))
             return false;
@@ -30,6 +34,9 @@ class GFG {
                 if (rd >= R || rd < 0 || cd >= C || cd < 0)
                     break;
                 // If not matched, break
+                if(k == len){
+                    break;
+                }
                 if (grid[rd][cd] != word.charAt(k))
                     break;
                 // Moving in particular direction
@@ -37,8 +44,11 @@ class GFG {
                 cd += y[dir];
             }
             // If all character matched, then value of must be equal to length of word
-            if (k == len)
+            if (k == len) {
+                eR = rd + (-1*x[dir]);
+                eC = cd + (-1 * y[dir]);
                 return true;
+            }
         }
         return false;
     }
@@ -53,10 +63,10 @@ class GFG {
         // Consider every point as starting point and search given word
         for (int row = 0; row < R; row++) {
             for (int col = 0; col < C; col++) {
-                if (grid[row][col]==word.charAt(0) &&
-                        search2D(grid, row, col, word))
-                    System.out.println(
-                            "pattern found at " + row + ", " + col);
+                if (grid[row][col]==word.charAt(0) && search2D(grid,row,col,word)){
+                    System.out.println("Pattern found at ("+row+","+col+") ("+eR+","+eC+")");
+
+                }
             }
         }
     }

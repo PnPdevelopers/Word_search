@@ -1,6 +1,6 @@
 package org.example;
 
-import net.sourceforge.tess4j.*;
+//import net.sourceforge.tess4j.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -14,14 +14,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
+//import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
 
 public class Image_Procs {
 
 
 
 
-    public static void OCR_Char(String image_path,String data_path,boolean debug) throws Exception {
+    /*public static void OCR_Char(String image_path,String data_path,boolean debug) throws Exception {
         //makes the Tesseract instance and fetches the image.
         ITesseract instance = new Tesseract();
         //primes the image for use.
@@ -66,20 +66,21 @@ public class Image_Procs {
         f.setVisible(true);}
             //end of debug code
             }
-
+    */
     //Backup shortcut list of letter as a word search to be used if the ocr is not working
-    public static char[][] getPuzzle(){
+    public static char[][] getPuzzle() {
         char[][] words = {
-                {'W','V','E','R','T','I','C','A','L'},
-                {'R','O','O','A','F','F','L','S','A','B'},
-                {'A','C','R','I','L','I','A','T','O','A'},
-                {'N','D','O','D','K','O','N','W','D','C'},
-                {'D','R','K','E','S','O','O','D','D','K'},
-                {'O','E','E','P','Z','E','G','L','I','W'},
-                {'M','S','I','I','H','O','A','E','R','A'},
-                {'A','L','R','K','R','R','I','R','E','R'},
-                {'K','O','D','I','D','E','D','R','C','D'},
-                {'H','E','L','W','S','L','E','U','T','H'}};
+                {'W', 'V', 'E', 'R', 'T', 'I', 'C', 'A', 'L','L',' '},
+                {'R', 'O', 'O', 'A', 'F', 'F', 'L', 'S', 'A', 'B',' '},
+                {'A', 'C', 'R', 'I', 'L', 'I', 'A', 'T', 'O', 'A',' '},
+                {'N', 'D', 'O', 'D', 'K', 'O', 'N', 'W', 'D', 'C',' '},
+                {'D', 'R', 'K', 'E', 'S', 'O', 'O', 'D', 'D', 'K',' '},
+                {'O', 'E', 'E', 'P', 'Z', 'E', 'G', 'L', 'I', 'W',' '},
+                {'M', 'S', 'I', 'I', 'H', 'O', 'A', 'E', 'R', 'A',' '},
+                {'A', 'L', 'R', 'K', 'R', 'R', 'I', 'R', 'E', 'R',' '},
+                {'K', 'O', 'D', 'I', 'D', 'E', 'D', 'R', 'C', 'D',' '},
+                {'H', 'E', 'L', 'W', 'S', 'L', 'E', 'U', 'T', 'H',' '},
+                {' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',' '}};
         return words;
     }
 
