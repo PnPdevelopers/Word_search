@@ -2,6 +2,7 @@ package org.example;
 
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.event.*;
 
 public class GUI implements ActionListener
@@ -38,8 +39,9 @@ public class GUI implements ActionListener
         //Locally declare input JFrame
         JFrame inputFrame = new JFrame();
         inputFrame.setDefaultCloseOperation(inputFrame.EXIT_ON_CLOSE);
-        inputFrame.setSize(700,700);
+        inputFrame.setPreferredSize(new Dimension(700,700));
         inputFrame.setTitle("Input Puzzle + Key Below");
+        inputFrame.setLayout(new BorderLayout());
 
         //Locally declare input JPanels
         JPanel inputPuzzle = new JPanel();
@@ -69,32 +71,38 @@ public class GUI implements ActionListener
         inputKey.add(keyButton);
         Submit.add(submitButton);
 
-        inputFrame.add(inputPuzzle);
-        inputFrame.add(inputKey);
-        inputFrame.add(Submit);
+        inputFrame.add(inputPuzzle, BorderLayout.EAST);
+        inputFrame.add(inputKey, BorderLayout.WEST);
+        inputFrame.add(Submit, BorderLayout.SOUTH);
 
         inputFrame.pack();
         inputFrame.setVisible(true);
-
-        //OUTPUT
+        //
+        //
+        //
+        //OUTPUT ------------------------------------------------------------------------------------------------------
         //Locally declare output JFrame
         JFrame outputFrame = new JFrame();
         outputFrame.setDefaultCloseOperation(inputFrame.EXIT_ON_CLOSE);
-        outputFrame.setSize(700,700);
+        outputFrame.setPreferredSize(new Dimension(700,700));
         outputFrame.setTitle("Output");
+        outputFrame.setLayout(new BorderLayout());
 
         //locally declare output JPanels
         JPanel outputPuzzle = new JPanel();
         outputPuzzle.setSize(250,250);
         outputPuzzle.setLayout(new GridLayout(3,0));
+        outputPuzzle.setBackground(Color.red);
 
         JPanel outputKey = new JPanel();
         outputKey.setSize(250,250);
         outputKey.setLayout(new GridLayout(3,0));
+        outputKey.setBackground(Color.blue);
+
 
         //Add outputPanels to outputFrame
-        outputFrame.add(outputPuzzle);
-        outputFrame.add(outputKey);
+        outputFrame.add(outputPuzzle, BorderLayout.WEST);
+        outputFrame.add(outputKey, BorderLayout.EAST);
 
         outputFrame.pack();
         outputFrame.setVisible(false);
@@ -114,6 +122,7 @@ public class GUI implements ActionListener
         else if(e.getSource() == submitButton)
         {
             //SEND TO LOGIC
+            System.out.println("Hello");
             inputFrame.setVisible(false);
             outputFrame.setVisible(true);
         }
