@@ -48,6 +48,8 @@ class GFG {
             char[][] grid,
             String word)
     {
+        R = grid.length;
+        C = grid[0].length;
         // Consider every point as starting point and search given word
         for (int row = 0; row < R; row++) {
             for (int col = 0; col < C; col++) {
@@ -57,14 +59,5 @@ class GFG {
                             "pattern found at " + row + ", " + col);
             }
         }
-    }
-    public static void main(String args[])
-    {
-        R = 3; //This is just placeholder to test if the searching works
-        C = 13; //same for this
-        char[][] grid = { { 'F', 'U', 'C', 'K', 'E', 'D', 'Y', 'O', 'U', 'R', 'M', 'O', 'M' }, { 'F', 'U', 'C', 'K', 'E', 'D', 'Y', 'O', 'U', 'R', 'M', 'O', 'M' }, { 'F', 'U', 'C', 'K', 'E', 'D', 'Y', 'O', 'U', 'R', 'M', 'O', 'M' } }; //placeholder 2D array
-        patternSearch(grid, "MOM"); //placeholder searched word
-        System.out.println();
-        patternSearch(grid, "FFF"); //other placeholder searched word
     }
 }
