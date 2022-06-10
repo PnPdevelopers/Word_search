@@ -10,7 +10,9 @@ import net.sourceforge.tess4j.Word;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -22,6 +24,38 @@ import java.util.List;
 //import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
 
 public class Image_Procs {
+
+    public static int[] scan_rows(BufferedImage image){
+
+        List<Integer> located_rows = new ArrayList<>();
+        for(int H=0;H<=image.getHeight();H++){
+            boolean found= false;
+            for (int W=0;W<=image.getWidth();W++){
+                if (0==(image.getRGB(W, H))){
+                    found=true;
+                }
+            }
+            if (found){
+                located_rows.add(H);
+            }}
+
+        return null;
+    }
+
+    public static BufferedImage[][] sudo_grid(String image_path) throws IOException {
+        BufferedImage picture = ImageIO.read(new File(image_path));
+        BufferedImage blackWhite;
+        blackWhite = new BufferedImage(picture.getWidth(), picture.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+
+        int[] located_rows;
+        located_rows=scan_rows(blackWhite);
+
+
+
+
+
+        return null;
+    }
 
 
 
