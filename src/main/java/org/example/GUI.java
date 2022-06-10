@@ -11,7 +11,7 @@ public class GUI implements ActionListener
     //For the record: This is the 3rd time that I have rewritten the GUI Code. I pray that this doesn't get deleted.
     //The last time I wrote it, no errors showed up according to the IDE.
     //Initialize global mainframes for Input/Output Frames
-    JFrame mainFrame;
+    public JFrame mainFrame;
 
     //Initialize child panels to house things in frames
     JPanel inputPanel;
@@ -38,7 +38,7 @@ public class GUI implements ActionListener
     public GUI()
     {
         //Locally declare main JFrame
-        JFrame mainFrame = new JFrame();
+        mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(mainFrame.EXIT_ON_CLOSE);
         mainFrame.setPreferredSize(new Dimension(700,700));
         mainFrame.setTitle("Input Puzzle + Key Below");
