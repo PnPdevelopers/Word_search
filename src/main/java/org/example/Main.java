@@ -20,6 +20,20 @@ public class Main {
         for(int i = 0; i<= words.size()-1; i++){
             GFG.patternSearch(puzzle,words.get(i));
         }
+        for(int i = 0; i<= words.size()-1; i++){
+
+            System.out.println(
+                    words.get(i)+
+                    " found at ("+
+                    GFG.coords[i][0]+
+                    ","+
+                    GFG.coords[i][1]+
+                    ") ("+
+                    GFG.coords[i][2]+
+                    ","+
+                    GFG.coords[i][3]+
+                    ")");
+        }
 
         GUI.main(null);
     }
