@@ -9,9 +9,12 @@ package org.example;
 import java.util.List;
 import java.util.Arrays;
 
+import static org.example.Image_Procs.sudo_grid;
+
 public class Main {
     //Had to change Main to not be static to account for the GUI. Just doing what the IDE told me as a suggestion.
     public static void main(String[] args) throws Exception {
+        sudo_grid("src/main/java/org/example/be_safe_word_search-1.png",true);
         //String image_path = "cross_puzzle_test.png";
         //String data_path = "tessdata";
         //Image_Procs.OCR_Char(image_path, data_path, true);

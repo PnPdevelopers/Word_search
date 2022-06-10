@@ -10,47 +10,171 @@ import net.sourceforge.tess4j.Word;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.color.ColorSpace;
 import java.awt.image.BufferedImage;
-import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 //import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
 
 public class Image_Procs {
 
-    public static int[] scan_rows(BufferedImage image){
-
-        List<Integer> located_rows = new ArrayList<>();
-        for(int H=0;H<=image.getHeight();H++){
-            boolean found= false;
-            for (int W=0;W<=image.getWidth();W++){
-                if (0==(image.getRGB(W, H))){
-                    found=true;
-                }
+    public static int find_next_column_start(int Start,BufferedImage image){
+        for(int W=Start;W<= image.getHeight()-1;W++){
+            if(W==image.getWidth()-1){return -1;}
+            for (int H=0;H<= image.getHeight()-1;H++){
+                if(image.getRGB(W,H)==0xFF000000){
+                    return (W);}
             }
-            if (found){
-                located_rows.add(H);
-            }}
+        }
 
-        return null;
+        return -1;}
+
+    public static int find_next_column_end(int Start,BufferedImage image){
+        for(int W=Start;W<= image.getHeight()-1;W++){
+            if(W==image.getWidth()-1){return -1;}
+            Boolean found_black = false;
+            for (int H=0;H<= image.getHeight()-1;H++){
+                if(image.getRGB(W,H)==0xFF000000){
+                    found_black = true;}
+            }
+            if (!found_black){
+                return(W);}
+        }
+
+        return -1;}
+
+    public static int find_next_row_start(int Start,BufferedImage image){
+        for(int H=Start;H<= image.getHeight()-1;H++){
+            if(H==image.getHeight()-1){return -1;}
+        for (int W=0;W<= image.getWidth()-1;W++){
+            if(image.getRGB(W,H)==0xFF000000){
+                return (H);}
+        }
+        }
+
+    return -1;}
+
+    public static int find_next_row_end(int Start,BufferedImage image){
+        for(int H=Start;H<= image.getHeight()-1;H++){
+            if(H==image.getHeight()-1){return -1;}
+            Boolean found_black = false;
+            for (int W=0;W<= image.getWidth()-1;W++){
+                if(image.getRGB(W,H)==0xFF000000){
+                    found_black = true;}
+            }
+            if (!found_black){
+                return(H);}
+        }
+
+    return -1;}
+
+    public static List<Integer> scan_column(BufferedImage image){
+
+        List<Integer> located_column = new ArrayList<>();
+        int start=find_next_column_start(0,image);
+        located_column.add(start);
+        boolean keep=true;
+        while (keep){
+            int end=find_next_column_end(start,image);
+            if (end!=-1){
+                located_column.add(end);
+                start=find_next_column_start(end,image);
+                if (start!=-1){
+                    located_column.add(start);
+                }else{keep=false;}
+
+
+            }else{keep=false;}
+        }
+
+
+        System.out.println("located_column:"+located_column);
+        return located_column;
     }
 
-    public static BufferedImage[][] sudo_grid(String image_path) throws IOException {
-        BufferedImage picture = ImageIO.read(new File(image_path));
-        BufferedImage blackWhite;
-        blackWhite = new BufferedImage(picture.getWidth(), picture.getHeight(), BufferedImage.TYPE_BYTE_BINARY);
+    public static List<Integer> scan_rows(BufferedImage image){
 
-        int[] located_rows;
-        located_rows=scan_rows(blackWhite);
+        List<Integer> located_rows = new ArrayList<>();
+        int start=find_next_row_start(0,image);
+        located_rows.add(start);
+        boolean keep=true;
+        while (keep){
+            int end=find_next_row_end(start,image);
+            if (end!=-1){
+                located_rows.add(end);
+                start=find_next_row_start(end,image);
+            if (start!=-1){
+                located_rows.add(start);
+            }else{keep=false;}
 
 
+            }else{keep=false;}
+        }
+
+
+        System.out.println("located_rows:"+located_rows);
+        return located_rows;
+    }
+
+    public static BufferedImage[][] sudo_grid(String image_path,boolean depug) throws IOException {
+
+        File file = new File(image_path);
+        BufferedImage orginalImage = ImageIO.read(file);
+
+        BufferedImage blackAndWhiteImg = new BufferedImage(
+                orginalImage.getWidth(), orginalImage.getHeight(),
+                BufferedImage.TYPE_BYTE_BINARY);
+
+        Graphics2D graphics = blackAndWhiteImg.createGraphics();
+        graphics.drawImage(orginalImage, 0, 0, null);
+
+        ImageIO.write(blackAndWhiteImg, "png", new File("saved.png"));
+
+        BufferedImage picture = ImageIO.read(new File("saved.png"));
+        List<Integer> located_rows;
+        List<Integer> located_column;
+        located_rows=scan_rows(picture);
+        located_column=scan_column(picture);
+
+
+        Graphics2D g2d = picture.createGraphics();
+        g2d.setColor(Color.RED);
+        //g2d.setStroke(4);
+        System.out.println(located_rows);
+        for(int x=0;x<= located_rows.size()-1;x++){
+            int level =located_rows.get(x);
+            g2d.drawRect(0, level,picture.getWidth(), 1);
+        }
+        for(int x=0;x<= located_column.size()-1;x++){
+            int level =located_column.get(x);
+            g2d.drawRect(level,0,1, picture.getHeight());
+        }
+
+        ImageIO.write(picture, "png", new File("saved_2.png"));
+
+        Rectangle rect;
+        Rectangle[][] rect_array = new Rectangle[located_column.size()/2][located_rows.size()/2];
+        int count=0;
+         for(int y=0;y< located_rows.size()/2;y++){
+             int ys=y*2;
+             for (int x=0;x<located_column.size()/2;x++){
+                 int xs=y*2;
+                rect= new Rectangle(located_rows.get(xs),located_column.get(ys),located_column.get(xs+1)-located_column.get(xs),located_rows.get(ys+1)-located_rows.get(ys));
+                System.out.println(rect.getX()+":"+rect.getY()+"    "+rect.getWidth()+":"+rect.getHeight());
+                rect_array[x][y]=rect;
+                 g2d.setColor(Color.RED);
+                 g2d.fill(rect);
+                 ImageIO.write(picture, "png", new File("saved_dep"+count+".png"));
+                 count++;
+             }
+
+         }
+        ImageIO.write(picture, "png", new File("saved_3.png"));
+        g2d.dispose();
+         System.out.println(Arrays.deepToString(rect_array));
 
 
 
