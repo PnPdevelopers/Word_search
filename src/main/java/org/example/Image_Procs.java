@@ -2,6 +2,11 @@ package org.example;
 
 //import net.sourceforge.tess4j.*;
 
+import net.sourceforge.tess4j.ITessAPI;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.Word;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -21,7 +26,7 @@ public class Image_Procs {
 
 
 
-    /*public static void OCR_Char(String image_path,String data_path,boolean debug) throws Exception {
+    public static void OCR_Char(String image_path,String data_path,boolean debug) throws Exception {
         //makes the Tesseract instance and fetches the image.
         ITesseract instance = new Tesseract();
         //primes the image for use.
@@ -66,7 +71,7 @@ public class Image_Procs {
         f.setVisible(true);}
             //end of debug code
             }
-    */
+
     //Backup shortcut list of letter as a word search to be used if the ocr is not working
     public static char[][] getPuzzle() {
         char[][] words = {
