@@ -2,10 +2,7 @@ package org.example;
 
 //import net.sourceforge.tess4j.*;
 
-import net.sourceforge.tess4j.ITessAPI;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
-import net.sourceforge.tess4j.Word;
+import net.sourceforge.tess4j.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -16,6 +13,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
 
 //import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
 
@@ -119,7 +118,7 @@ public class Image_Procs {
         return located_rows;
     }
 
-    public static BufferedImage[][] sudo_grid(String image_path,boolean depug) throws IOException {
+    public static BufferedImage[][] sudo_grid(String image_path,String data_path,boolean depug) throws IOException, TesseractException {
 
         File file = new File(image_path);
         BufferedImage orginalImage = ImageIO.read(file);
@@ -144,40 +143,74 @@ public class Image_Procs {
         g2d.setColor(Color.RED);
         //g2d.setStroke(4);
         System.out.println(located_rows);
-        for(int x=0;x<= located_rows.size()-1;x++){
+        /*for(int x=0;x<= located_rows.size()-1;x++){
             int level =located_rows.get(x);
             g2d.drawRect(0, level,picture.getWidth(), 1);
         }
         for(int x=0;x<= located_column.size()-1;x++){
             int level =located_column.get(x);
             g2d.drawRect(level,0,1, picture.getHeight());
-        }
+        }*/
 
         ImageIO.write(picture, "png", new File("saved_2.png"));
 
+        ITesseract instance = new Tesseract();
+        instance.setDatapath(data_path);
+        //instance.setPageSegMode(PSM_SINGLE_CHAR);
+
         Rectangle rect;
-        Rectangle[][] rect_array = new Rectangle[located_column.size()/2][located_rows.size()/2];
+        Character[][] char_array = new Character[located_column.size()/2][located_rows.size()/2];
+
         int count=0;
-         for(int y=0;y< located_rows.size()/2;y++){
-             int ys=y*2;
-             for (int x=0;x<located_column.size()/2;x++){
-                 int xs=y*2;
-                rect= new Rectangle(located_rows.get(xs),located_column.get(ys),located_column.get(xs+1)-located_column.get(xs),located_rows.get(ys+1)-located_rows.get(ys));
+        System.out.println("y axis:"+located_rows.size()/2);
+        System.out.println("y axis from:"+located_rows.size());
+        int count_y=0;
+         for(int y=0;y<located_rows.size();){
+             int ys=y;
+             System.out.println("x axis:"+located_column.size()/2);
+             System.out.println("x axis from:"+located_column.size());
+             int count_x=0;
+             for (int x=0;x<located_column.size();){
+                 int xs=x;
+                 System.out.println("at count:"+count+", looking at y="+(ys+1)+",x="+(xs+1));
+                rect= new Rectangle(located_column.get(xs),located_rows.get(ys),located_column.get(xs+1)-located_column.get(xs),located_rows.get(ys+1)-located_rows.get(ys));
                 System.out.println(rect.getX()+":"+rect.getY()+"    "+rect.getWidth()+":"+rect.getHeight());
-                rect_array[x][y]=rect;
+
+                 BufferedImage croped= picture.getSubimage((int) rect.getX(), (int) rect.getY(), (int) rect.getWidth(), (int) rect.getHeight());
+                 ImageIO.write(croped, "png", new File("saved_croped_count"+count+".png"));
+
+                String read = instance.doOCR(croped);
+                if (read.length()==0){
+                    read=" ";}
+                 if (read.equals("1")){
+                     read="I";}
+
+
+                System.out.println("The letter string is:<"+read+">");
+                char filler=read.charAt(0);
+                char_array[count_x][count_y]=filler;
                  g2d.setColor(Color.RED);
                  g2d.fill(rect);
-                 ImageIO.write(picture, "png", new File("saved_dep"+count+".png"));
+                 //ImageIO.write(picture, "png", new File("saved_dep"+count+".png"));
+                 count_x++;
                  count++;
-             }
-
-         }
+             x=x+2;}
+             count_x++;
+         y=y+2;}
         ImageIO.write(picture, "png", new File("saved_3.png"));
         g2d.dispose();
-         System.out.println(Arrays.deepToString(rect_array));
+         System.out.println(Arrays.deepToString(char_array));
+        System.out.println("\n\n\n\n");
 
+        int rows=10;
+        int columns=10;
 
-
+        for (int i = 0; i<rows; i++) {
+            for (int j = 0; j<columns; j++) {
+                System.out.print(char_array[i][j]+"-");
+            }
+            System.out.println();
+        }
         return null;
     }
 
