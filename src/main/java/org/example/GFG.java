@@ -12,6 +12,7 @@ class GFG {
     static int[] x = { -1, -1, -1, 0, 0, 1, 1, 1 };
     static int[] y = { -1, 0, 1, -1, 1, -1, 0, 1 };
 
+    //Initializes variables to return final coordinate data
     static int eR = -1;
     static int eC = -1;
 
@@ -45,6 +46,7 @@ class GFG {
             }
             // If all character matched, then value of must be equal to length of word
             if (k == len) {
+                //Since the algorithm finishes one letter past the end of the word, take a step back by inversing the direction data to get the end coordinate of the word.
                 eR = rd + (-1*x[dir]);
                 eC = cd + (-1 * y[dir]);
                 return true;
@@ -69,6 +71,7 @@ class GFG {
         for (int row = 0; row < R; row++) {
             for (int col = 0; col < C; col++) {
                 if (grid[row][col]==word.charAt(0) && search2D(grid,row,col,word)){
+                    //Append coordinate data of successful word finds to global 2D array of coordinates
                     coords[i][0] = row;
                     coords[i][1] = col;
                     coords[i][2] = eR;

@@ -89,7 +89,7 @@ public class Image_Procs {
         return words;
     }
 
-    //Backup shortcut list of key words to be used if the ocr is not working
+    //Backup shortcut list of keywords to be used if the ocr is not working
     public static List<String> getWords() {
         List<String> puzzle = Arrays.asList(
                 "SEEK",

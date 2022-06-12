@@ -19,6 +19,7 @@ public class Main {
         List<String> words = Image_Procs.getWords();
         for(int i = 0; i<= words.size()-1; i++){
             GFG.patternSearch(puzzle,words.get(i));
+            //Prints solution coordinate data found, temporary until final output is completed.
             System.out.println(
                     words.get(i)+
                             " found at ("+

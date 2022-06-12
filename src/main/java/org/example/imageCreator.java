@@ -23,9 +23,9 @@ public class imageCreator {
     String path = "C:/createdImage.png";
 
     // Create options
-    PngOptions options = new PngOptions();
+    //PngOptions options = new PngOptions();
     //options.setSource(new FileCreateSource(path, false));
-    PngImage wordSearchRemade = (PngImage)Image.create( ,outputImageHeight ,outputImageLength);
+    //PngImage wordSearchRemade = (PngImage)Image.create( ,outputImageHeight ,outputImageLength);
 
 
 }
