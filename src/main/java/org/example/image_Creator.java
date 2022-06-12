@@ -13,8 +13,10 @@ public class image_Creator {
         BufferedImage image = ImageIO.read(new File("src/main/java/org/example/white-background-500x500.jpg"));
         //get the Graphics object
         Graphics g = image.getGraphics();
-        //set font
-        g.setFont(g.getFont().deriveFont(40f));
+        //Setting font name
+        Font myFont1 = new Font("Fira Code", Font.BOLD, 40);
+        g.setFont(myFont1);
+        //Set font color
         g.setColor(black);
         //display the text at the coordinates(x=50, y=150)
         g.drawString("Welcome To WayToLearnX!", 50, 150);
