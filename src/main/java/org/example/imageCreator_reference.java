@@ -1,10 +1,6 @@
 package org.example;
-import com.aspose.imaging.*;
-import com.aspose.imaging.imageoptions.*;
-import com.aspose.imaging.fileformats.png.*;
-import com.aspose.imaging.sources.FileCreateSource;
 
-public class imageCreator {
+public class imageCreator_reference {
     //this is just test data for drawing an image from an array
     private char W;
     private char O;
@@ -20,7 +16,7 @@ public class imageCreator {
 
     //this is where the image is created
     // Where created image to store
-    String path = "C:/createdImage.png";
+    //String path = "C:/createdImage.png";
 
     // Create options
     //PngOptions options = new PngOptions();

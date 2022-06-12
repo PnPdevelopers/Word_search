@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 import static java.awt.Color.black;
 public class image_Creator {
-    public static void drawCharacter(String chara, int xPos, int yPos, String inputImage, String outputImage) throws IOException {
+    public static void drawCharacter(char chara, int xPos, int yPos, String inputImage, String outputImage) throws IOException {
         int xCord = 12 + 40 * xPos+1;
         int yCord = 35 + 40 * yPos+1;
             //read the image
@@ -20,16 +20,17 @@ public class image_Creator {
             //Set font color
             g.setColor(black);
             //display the text at the coordinates(x=50, y=150)
-            g.drawString(chara, xCord, yCord);
+            String Schara = Character.toString(chara);
+            g.drawString(Schara, xCord, yCord);
             g.dispose();
             //write the image
             ImageIO.write(image, "jpg", new File(outputImage));
         }
-    public static void drawArray(char[][] inputArray){
-        int inputArraylength = inputArray.length; //number of layers y
+    public static void drawArray(char[][] inputArray) throws IOException {
+        drawCharacter(inputArray[0][0],0,0,"src/main/java/org/example/white-background-500x500.jpg","src/main/java/org/example/outputImage.jpg");
         for(int i = 0; i < inputArray.length; i++) {
-            for(int j = 0; j < inputArray.length[i]; j++) {
-
+            for(int j = 0; j < inputArray[i].length; j++) {
+                drawCharacter(inputArray[i][j],i,j,"src/main/java/org/example/outputImage.jpg","src/main/java/org/example/outputImage.jpg");
             }
         }
     }
