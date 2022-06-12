@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.event.*;
+import java.net.URL;
 import java.util.EventListener;
 
 public class GUI implements ActionListener
@@ -37,11 +38,16 @@ public class GUI implements ActionListener
 
     public GUI()
     {
+
         //Locally declare main JFrame
         mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(mainFrame.EXIT_ON_CLOSE);
         mainFrame.setPreferredSize(new Dimension(700,700));
         mainFrame.setTitle("Input Puzzle + Key Below");
+
+        //New Icon:
+        ImageIcon icon = new ImageIcon("src/main/java/org/example/logo.png");
+        mainFrame.setIconImage(icon.getImage());
 
         //Locally declare input JPanels
         inputPanel = new JPanel();
