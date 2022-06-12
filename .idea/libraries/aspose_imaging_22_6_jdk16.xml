@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="aspose-imaging-22.6-jdk16">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/aspose-imaging-22.6/lib/aspose-imaging-22.6-jdk16.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
