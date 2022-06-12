@@ -28,7 +28,7 @@ public class image_Creator {
     public static void drawArray(char[][] inputArray){
         int inputArraylength = inputArray.length; //number of layers y
         for(int i = 0; i < inputArray.length; i++) {
-            for(int j = 0; j < inputArray.length[i]; j++) {
+            for(int j = 0; j < inputArray[i].length; j++) {
 
             }
         }
