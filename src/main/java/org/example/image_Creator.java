@@ -30,7 +30,7 @@ public class image_Creator {
         drawCharacter(inputArray[0][0],0,0,"src/main/java/org/example/white-background-500x500.jpg","src/main/java/org/example/outputImage.jpg");
         for(int i = 0; i < inputArray.length; i++) {
             for(int j = 0; j < inputArray[i].length; j++) {
-                drawCharacter(inputArray[i][j],i,j,"src/main/java/org/example/outputImage.jpg","src/main/java/org/example/outputImage.jpg");
+                drawCharacter(inputArray[j][i],i,j,"src/main/java/org/example/outputImage.jpg","src/main/java/org/example/outputImage.jpg");
             }
         }
     }
