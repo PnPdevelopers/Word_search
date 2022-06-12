@@ -24,7 +24,7 @@ public class imageCreator {
 
     // Create options
     PngOptions options = new PngOptions();
-    options.setSource(new FileCreateSource(path, false));
+    //options.setSource(new FileCreateSource(path, false));
     PngImage wordSearchRemade = (PngImage)Image.create( ,outputImageHeight ,outputImageLength);
 
 
