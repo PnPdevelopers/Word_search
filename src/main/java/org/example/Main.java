@@ -14,6 +14,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //String image_path = "cross_puzzle_test.png";
         //String data_path = "tessdata";
+        image_Creator.drawCharacter("E",0,0,"src/main/java/org/example/white-background-500x500.jpg","src/main/java/org/example/outputImage.jpg");
         //Image_Procs.OCR_Char(image_path, data_path, true);
         char[][] puzzle = Image_Procs.getPuzzle();
         List<String> words = Image_Procs.getWords();
@@ -32,7 +33,7 @@ public class Main {
                             GFG.coords[i][3]+
                             ")");
         }
-        GUI.main(null);
+        //GUI.main(null);
     }
 }
 
