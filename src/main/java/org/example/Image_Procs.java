@@ -223,7 +223,7 @@ public class Image_Procs {
         try {
 
             tesseract.setDatapath("src/main/java/org/example/tessdata");
-
+            tesseract.setLanguage("eng");
             // the path of your tess data folder
             // inside the extracted file
             String text
