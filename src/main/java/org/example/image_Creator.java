@@ -6,8 +6,7 @@ import java.io.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 
-import static java.awt.Color.black;
-import static java.awt.Color.red;
+import static java.awt.Color.*;
 
 public class image_Creator {
     //drawCharacter method for adding individual characters to an image using the character, it's position in a 2D array, and the input and output image file names
@@ -32,31 +31,31 @@ public class image_Creator {
         ImageIO.write(image, "jpg", new File(outputImage));
     }
 
-    public static void drawLine(int startX, int startY, int endX, int endY, String inputImage, String outputImage) throws IOException, FontFormatException {
+    public static void drawLine(int width, Color color, int startX, int startY, int endX, int endY, String inputImage, String outputImage) throws IOException, FontFormatException {
         //System.out.println("("+startX+","+startY+") ("+endX+","+endY+")");
         //define the position of the letter
-        int xStart = 24 + 80 * startX + 1;
+        int xStart = 43 + 80 * startX;
         //System.out.println("X position of line start " + xStart);
-        int yStart = 70 + 80 * startY + 1;
+        int yStart = 50 + 80 * startY;
         //System.out.println("Y position of line start " + yStart);
-        int xEnd = 24 + 80 * endX + 1;
+        int xEnd = 43 + 80 * endX;
         //System.out.println("X position of line end " + xEnd);
-        int yEnd = 70 + 80 * endY + 1;
+        int yEnd = 50 + 80 * endY;
         //System.out.println("Y position of line end " + yEnd);
         //read the image
         BufferedImage image = ImageIO.read(new File(inputImage));
         //get the Graphics object
         Graphics g = image.getGraphics();
-        image_Creator.paintComponent(g,xStart,yStart,xEnd,yEnd);
+        image_Creator.paintComponent(width, color, g ,xStart,yStart,xEnd,yEnd);
         g.dispose();
         //write the image
         ImageIO.write(image, "jpg", new File(outputImage));
     }
 
-    public static void paintComponent(Graphics g, int startX, int startY, int endX, int endY) {
+    public static void paintComponent(int width, Color color, Graphics g, int startX, int startY, int endX, int endY) {
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(red);
-        g2.setStroke(new BasicStroke(40));
+        g2.setColor(color);
+        g2.setStroke(new BasicStroke(width));
         g2.draw(new Line2D.Float(startX, startY, endX, endY));
     }
 
@@ -76,7 +75,8 @@ public class image_Creator {
         ImageIO.write(image,"jpg", new File("src/main/java/org/example/outputImage.jpg"));
 
         for(int i = 0; i<Image_Procs.getWords().size();i++){
-            drawLine(GFG.coords[i][0], GFG.coords[i][1], GFG.coords[i][2], GFG.coords[i][3], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
+            drawLine(48, black, GFG.coords[i][1], GFG.coords[i][0], GFG.coords[i][3], GFG.coords[i][2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
+            drawLine(45, yellow, GFG.coords[i][1], GFG.coords[i][0], GFG.coords[i][3], GFG.coords[i][2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
         }
 
 
