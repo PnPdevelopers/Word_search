@@ -32,7 +32,7 @@ public class image_Creator {
     //drawArray method to crop a blank image to the proper size, then loop the drawCharacter method to fill the cropped image with the 2D array, takes a 2D array as input
     public static void drawArray(char[][] inputArray) throws IOException, FontFormatException {
         //load the blank image
-        File imageFile = new File("src/main/java/org/example/white-background-1000x1000.png");
+        File imageFile = new File("src/main/java/org/example/white-background-8K.jpg");
         BufferedImage bufferedImage = ImageIO.read(imageFile);
         //determine the height/width of the cropped image
         int outputImageHeight = 24+inputArray.length*(80);
