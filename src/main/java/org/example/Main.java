@@ -18,7 +18,7 @@ public class Main {
         //Image_Procs.sudo_grid("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png","src/main/java/org/example/tessdata",true);
         char[][] puzzle = Image_Procs.getPuzzle();
         List<String> words = Image_Procs.getWords();
-        image_Creator.drawArray(puzzle);
+
         for(int i = 0; i<= words.size()-1; i++){
             GFG.patternSearch(puzzle,words.get(i));
             //Prints solution coordinate data found, temporary until final output is completed.
@@ -34,6 +34,7 @@ public class Main {
                             GFG.coords[i][3]+
                             ")");
         }
+        image_Creator.drawArray(puzzle);
         GUI.main(null);
         //word_Highlighter.paint();
     }
