@@ -1,5 +1,4 @@
 package org.example;
-
 import java.awt.*;
 import java.awt.image.RenderedImage;
 import java.io.*;
@@ -29,6 +28,7 @@ public class image_Creator {
         //write the image
         ImageIO.write(image, "jpg", new File(outputImage));
     }
+
     //drawArray method to crop a blank image to the proper size, then loop the drawCharacter method to fill the cropped image with the 2D array, takes a 2D array as input
     public static void drawArray(char[][] inputArray) throws IOException, FontFormatException {
         //load the blank image
@@ -47,5 +47,6 @@ public class image_Creator {
                 drawCharacter(inputArray[j][i], i, j, "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
             }
         }
+
     }
 }

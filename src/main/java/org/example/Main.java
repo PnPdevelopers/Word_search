@@ -34,7 +34,8 @@ public class Main {
                             GFG.coords[i][3]+
                             ")");
         }
-        //GUI.main(null);
+        GUI.main(null);
+        //word_Highlighter.paint();
     }
 }
 

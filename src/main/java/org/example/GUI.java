@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.event.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.EventListener;
 
@@ -122,18 +123,23 @@ public class GUI implements ActionListener
         }
         else if(e.getSource() == submitButton)
         {
+            try {
+                word_Highlighter.loadImageFrame();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             //SEND TO LOGIC
-            System.out.println("Hello");
+            //System.out.println("Hello");
             //sets main frame to not visible
-            mainFrame.setVisible(false);
+            //mainFrame.setVisible(false);
             //removes existing GUI on display
-            mainFrame.getContentPane().removeAll();
+            //mainFrame.getContentPane().removeAll();
             //adds selected parameter GUI
-            mainFrame.getContentPane().add(outputPanel);
+            //mainFrame.getContentPane().add(outputPanel);
             //repacks main frame
-            mainFrame.pack();
+            //mainFrame.pack();
             //sets as visible
-            mainFrame.setVisible(true);
+            //mainFrame.setVisible(true);
         }
     }
 }
