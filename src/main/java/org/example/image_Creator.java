@@ -40,9 +40,8 @@ public class image_Creator {
         BufferedImage croppedImage = bufferedImage.getSubimage(0, 0, outputImageLength-1, outputImageHeight-1);
         RenderedImage image = croppedImage;
         //save the cropped image
-        ImageIO.write(image,"jpg", new File("src/main/java/org/example/croppedImage.jpg"));
+        ImageIO.write(image,"jpg", new File("src/main/java/org/example/outputImage.jpg"));
         //loop to fill the blank image with the input 2D array
-        drawCharacter(inputArray[0][0], 0, 0, "src/main/java/org/example/croppedImage.jpg", "src/main/java/org/example/outputImage.jpg");
         for (int i = 0; i < inputArray.length; i++) {
             for (int j = 0; j < inputArray[i].length; j++) {
                 drawCharacter(inputArray[j][i], i, j, "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
