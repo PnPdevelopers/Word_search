@@ -14,7 +14,8 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //String image_path = "cross_puzzle_test.png";
         //String data_path = "tessdata";
-        //Image_Procs.OCR_Char(image_path, data_path, true);
+        Image_Procs.OCR_Char("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png", "src/main/java/org/example/tessdata", true);
+        Image_Procs.sudo_grid("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png","src/main/java/org/example/tessdata",true);
         char[][] puzzle = Image_Procs.getPuzzle();
         List<String> words = Image_Procs.getWords();
         image_Creator.drawArray(puzzle);
