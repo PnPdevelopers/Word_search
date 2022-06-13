@@ -33,7 +33,7 @@ public class image_Creator {
 
     public static void drawLine(int width, Color color, int startX, int startY, int endX, int endY, String inputImage, String outputImage) throws IOException, FontFormatException {
         //System.out.println("("+startX+","+startY+") ("+endX+","+endY+")");
-        //define the position of the letter
+        //math for line positioning based on 2D array position
         int xStart = 43 + 80 * startX;
         //System.out.println("X position of line start " + xStart);
         int yStart = 50 + 80 * startY;
@@ -74,7 +74,8 @@ public class image_Creator {
         //save the cropped image
         ImageIO.write(image,"jpg", new File("src/main/java/org/example/outputImage.jpg"));
 
-        for(int i = 0; i<Image_Procs.getWords().size();i++){
+        for(int i = 0; i<Image_Procs.getWords(2).size();i++){
+            //For each word, draws outer black line then inner yellow line to appear to have a black border around a yellow line
             drawLine(48, black, GFG.coords[i][1], GFG.coords[i][0], GFG.coords[i][3], GFG.coords[i][2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
             drawLine(45, yellow, GFG.coords[i][1], GFG.coords[i][0], GFG.coords[i][3], GFG.coords[i][2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
         }

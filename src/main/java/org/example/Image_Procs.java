@@ -245,35 +245,80 @@ public class Image_Procs {
 
 
     //Backup shortcut list of letter as a word search to be used if the ocr is not working
-    public static char[][] getPuzzle() {
-        char[][] words = {
-                {'W', 'V', 'E', 'R', 'T', 'I', 'C', 'A', 'L','L'},
-                {'R', 'O', 'O', 'A', 'F', 'F', 'L', 'S', 'A', 'B'},
-                {'A', 'C', 'R', 'I', 'L', 'I', 'A', 'T', 'O', 'A'},
-                {'N', 'D', 'O', 'D', 'K', 'O', 'N', 'W', 'D', 'C'},
-                {'D', 'R', 'K', 'E', 'S', 'O', 'O', 'D', 'D', 'K'},
-                {'O', 'E', 'E', 'P', 'Z', 'E', 'G', 'L', 'I', 'W'},
-                {'M', 'S', 'I', 'I', 'H', 'O', 'A', 'E', 'R', 'A'},
-                {'A', 'L', 'R', 'K', 'R', 'R', 'I', 'R', 'E', 'R'},
-                {'K', 'O', 'D', 'I', 'D', 'E', 'D', 'R', 'C', 'D'},
-                {'H', 'E', 'L', 'W', 'S', 'L', 'E', 'U', 'T', 'H'},
-                };
-        return words;
+    public static char[][] getPuzzle(int which) {
+        char[][] blank = new char[0][0];
+        if (which == 1) {
+            char[][] words = {
+                    {'W', 'V', 'E', 'R', 'T', 'I', 'C', 'A', 'L', 'L'},
+                    {'R', 'O', 'O', 'A', 'F', 'F', 'L', 'S', 'A', 'B'},
+                    {'A', 'C', 'R', 'I', 'L', 'I', 'A', 'T', 'O', 'A'},
+                    {'N', 'D', 'O', 'D', 'K', 'O', 'N', 'W', 'D', 'C'},
+                    {'D', 'R', 'K', 'E', 'S', 'O', 'O', 'D', 'D', 'K'},
+                    {'O', 'E', 'E', 'P', 'Z', 'E', 'G', 'L', 'I', 'W'},
+                    {'M', 'S', 'I', 'I', 'H', 'O', 'A', 'E', 'R', 'A'},
+                    {'A', 'L', 'R', 'K', 'R', 'R', 'I', 'R', 'E', 'R'},
+                    {'K', 'O', 'D', 'I', 'D', 'E', 'D', 'R', 'C', 'D'},
+                    {'H', 'E', 'L', 'W', 'S', 'L', 'E', 'U', 'T', 'H'},
+            };
+            return words;
+        }
+        if (which == 2) {
+            char[][] words = {
+                    {'V', 'B', 'R', 'E', 'E', 'F', 'I', 'S', 'H', 'R', 'A', 'C', 'H', 'P'},
+                    {'A', 'N', 'A', 'C', 'R', 'O', 'C', 'A', 'D', 'I', 'L', 'E', 'E', 'B'},
+                    {'A', 'O', 'S', 'T', 'R', 'I', 'C', 'H', 'T', 'E', 'G', 'R', 'D', 'A'},
+                    {'I', 'A', 'D', 'D', 'H', 'C', 'H', 'E', 'E', 'T', 'A', 'H', 'G', 'D'},
+                    {'B', 'H', 'R', 'O', 'D', 'R', 'A', 'V', 'E', 'N', 'E', 'N', 'E', 'G'},
+                    {'E', 'Y', 'W', 'D', 'L', 'S', 'A', 'M', 'O', 'L', 'E', 'L', 'H', 'E'},
+                    {'A', 'R', 'T', 'P', 'V', 'P', 'R', 'C', 'B', 'O', 'L', 'R', 'O', 'R'},
+                    {'R', 'H', 'T', 'O', 'A', 'A', 'H', 'C', 'R', 'O', 'W', 'A', 'G', 'H'},
+                    {'C', 'C', 'A', 'N', 'N', 'O', 'R', 'I', 'A', 'Z', 'E', 'B', 'R', 'A'},
+                    {'H', 'A', 'N', 'Y', 'T', 'A', 'E', 'K', 'N', 'I', 'N', 'A', 'W', 'A'},
+            };
+            return words;
+        }
+        return blank;
     }
 
     //Backup shortcut list of key words to be used if the ocr is not working
-    public static List<String> getWords() {
-        List<String> puzzle = Arrays.asList(
-                "SEEK",
-                "FIND",
-                "RANDOM",
-                "SLEUTH",
-                "BACKWARD",
-                "VERTICAL",
-                "DIAGONAL",
-                "WIKIPEDIA",
-                "HORIZONTAL",
-                "WORDSEARCH");
+    public static List<String> getWords(int which) {
+        List<String> puzzle = new ArrayList<>();
+        if(which == 1){
+            puzzle = Arrays.asList(
+                    "SEEK",
+                    "FIND",
+                    "RANDOM",
+                    "SLEUTH",
+                    "BACKWARD",
+                    "VERTICAL",
+                    "DIAGONAL",
+                    "WIKIPEDIA",
+                    "HORIZONTAL",
+                    "WORDSEARCH"
+            );
+        }
+        if(which == 2){
+            puzzle = Arrays.asList(
+                    "FISH",
+                    "CROCODILE",
+                    "OSTRICH",
+                    "CHEETAH",
+                    "RAVEN",
+                    "MOLE",
+                    "CROW",
+                    "BEAR",
+                    "PONY",
+                    "ANT",
+                    "EEL",
+                    "HEDGEHOG",
+                    "BADGER",
+                    "ZEBRA",
+                    "BAT",
+                    "DOLPHIN",
+                    "AARDVARK"
+            );
+        }
+
         return puzzle;
     }
 }
