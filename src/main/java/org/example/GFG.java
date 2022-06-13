@@ -60,7 +60,7 @@ class GFG {
     //Creates list to add position data to be returned in image to user
     //also makes an integer to add data to this list in the loop
     //list is a 2D array with a row for every character in the word search in case of repeat word finds
-    static int[][] coords = new int[(Image_Procs.getPuzzle(2).length*Image_Procs.getPuzzle(2)[0].length)][4];
+    static int[][] coords = new int[(Image_Procs.getPuzzle(1).length*Image_Procs.getPuzzle(1)[0].length)][4];
     static int i = 0;
     static void patternSearch(
             char[][] grid,

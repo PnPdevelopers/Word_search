@@ -74,7 +74,7 @@ public class image_Creator {
         //save the cropped image
         ImageIO.write(image,"jpg", new File("src/main/java/org/example/outputImage.jpg"));
 
-        for(int i = 0; i<Image_Procs.getWords(2).size();i++){
+        for(int i = 0; i<=Image_Procs.getWords(1).size()+1;i++){
             //For each word, draws outer black line then inner yellow line to appear to have a black border around a yellow line
             drawLine(48, black, GFG.coords[i][1], GFG.coords[i][0], GFG.coords[i][3], GFG.coords[i][2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
             drawLine(45, yellow, GFG.coords[i][1], GFG.coords[i][0], GFG.coords[i][3], GFG.coords[i][2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
