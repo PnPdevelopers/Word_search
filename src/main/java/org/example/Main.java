@@ -16,23 +16,10 @@ public class Main {
         //String data_path = "tessdata";
         Image_Procs.OCR_Char("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png", "src/main/java/org/example/tessdata", true);
         //Image_Procs.sudo_grid("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png","src/main/java/org/example/tessdata",true);
-        char[][] puzzle = Image_Procs.getPuzzle(2);
-        List<String> words = Image_Procs.getWords(2);
-
+        char[][] puzzle = Image_Procs.getPuzzle(2); //gets puzzle
+        List<String> words = Image_Procs.getWords(2); //gets words
         for(int i = 0; i<= words.size()-1; i++){
             GFG.patternSearch(puzzle,words.get(i));
-            //Prints solution coordinate data found, temporary until final output is completed.
-            System.out.println(
-                    words.get(i)+
-                            " found at ("+
-                            GFG.coords[i][0]+
-                            ","+
-                            GFG.coords[i][1]+
-                            ") ("+
-                            GFG.coords[i][2]+
-                            ","+
-                            GFG.coords[i][3]+
-                            ")");
         }
         image_Creator.drawArray(puzzle);
         GUI.main(null);

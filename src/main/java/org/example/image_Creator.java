@@ -84,7 +84,7 @@ public class image_Creator {
         //loop to fill the blank image with the input 2D array
         for (int i = 0; i < inputArray.length; i++) {
             for (int j = 0; j < inputArray[i].length; j++) {
-                drawCharacter(inputArray[j][i], i, j, "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
+                drawCharacter(inputArray[i][j], j, i, "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
             }
         }
 
