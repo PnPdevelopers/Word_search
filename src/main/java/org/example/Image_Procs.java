@@ -88,6 +88,15 @@ public class Image_Procs {
                 };
         return words;
     }
+    public static char[][] getPuzzle2() {
+        char[][] words = {
+                {'W', 'O', 'R', 'D'},
+                {'O', 'R', 'D', 'W'},
+                {'R', 'D', 'W', 'O'},
+                {'D', 'W', 'O', 'R'},
+        };
+        return words;
+    }
 
     //Backup shortcut list of keywords to be used if the ocr is not working
     public static List<String> getWords() {
