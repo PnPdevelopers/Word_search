@@ -143,7 +143,7 @@ public class GUI implements ActionListener
             f.setVisible(true);
             f.setResizable(false);
             f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            
+
             //SEND TO LOGIC
             //System.out.println("Hello");
             //sets main frame to not visible
