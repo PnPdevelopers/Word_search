@@ -1,9 +1,12 @@
 package org.example;
 
 import java.awt.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.EventListener;
@@ -123,11 +126,24 @@ public class GUI implements ActionListener
         }
         else if(e.getSource() == submitButton)
         {
+            String path = "src/main/java/org/example/outputImage.jpg";
+            File file = new File(path);
+            BufferedImage image = null;
             try {
-                word_Highlighter.loadImageFrame();
+                image = ImageIO.read(file);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
+            JLabel label = new JLabel(new ImageIcon(image));
+            JFrame f = new JFrame();
+
+            f.getContentPane().add(label);
+            f.pack();
+            f.setLocation(0, 0);
+            f.setVisible(true);
+            f.setResizable(false);
+            f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            
             //SEND TO LOGIC
             //System.out.println("Hello");
             //sets main frame to not visible
