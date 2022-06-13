@@ -14,10 +14,10 @@ import static org.example.Image_Procs.sudo_grid;
 public class Main {
     //Had to change Main to not be static to account for the GUI. Just doing what the IDE told me as a suggestion.
     public static void main(String[] args) throws Exception {
-        sudo_grid("src/main/java/org/example/lower_case_word_search.png","tessdata",true);
+        //sudo_grid("src/main/java/org/example/outputImage.jpg","tessdata",true);
         //String image_path = "cross_puzzle_test.png";
         //String data_path = "tessdata";
-        //Image_Procs.OCR_Char(image_path, data_path, true);
+        Image_Procs.OCR2_Char("src/main/java/org/example/outputImage.jpg", "tessdata", true);
         char[][] puzzle = Image_Procs.getPuzzle();
         List<String> words = Image_Procs.getWords();
         for(int i = 0; i<= words.size()-1; i++){

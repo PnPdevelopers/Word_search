@@ -143,14 +143,14 @@ public class Image_Procs {
         g2d.setColor(Color.RED);
         //g2d.setStroke(4);
         System.out.println(located_rows);
-        /*for(int x=0;x<= located_rows.size()-1;x++){
+        for(int x=0;x<= located_rows.size()-1;x++){
             int level =located_rows.get(x);
             g2d.drawRect(0, level,picture.getWidth(), 1);
         }
         for(int x=0;x<= located_column.size()-1;x++){
             int level =located_column.get(x);
             g2d.drawRect(level,0,1, picture.getHeight());
-        }*/
+        }
 
         ImageIO.write(picture, "png", new File("saved_2.png"));
 
@@ -159,7 +159,7 @@ public class Image_Procs {
         //instance.setPageSegMode(PSM_SINGLE_CHAR);
 
         Rectangle rect;
-        Character[][] char_array = new Character[located_column.size()/2][located_rows.size()/2];
+        String[][] char_array = new String[located_column.size()/2][located_rows.size()/2];
 
         int count=0;
         System.out.println("y axis:"+located_rows.size()/2);
@@ -186,8 +186,10 @@ public class Image_Procs {
                      read="I";}
 
 
-                System.out.println("The letter string is:<"+read+">");
-                char filler=read.charAt(0);
+                System.out.println("The letter string is:<"+read+">"+" at x="+count_x+" and y="+count_y);
+                 System.out.println();
+                 System.out.println();
+                 String filler=read;
                 char_array[count_x][count_y]=filler;
                  g2d.setColor(Color.RED);
                  g2d.fill(rect);
@@ -196,72 +198,51 @@ public class Image_Procs {
                  count++;
              x=x+2;}
              count_x++;
-         y=y+2;}
+         y=y+2;
+         count_y++;}
         ImageIO.write(picture, "png", new File("saved_3.png"));
         g2d.dispose();
-         System.out.println(Arrays.deepToString(char_array));
-        System.out.println("\n\n\n\n");
+         //System.out.println(Arrays.deepToString(char_array));
+        //System.out.println("\n\n\n\n");
 
         int rows=10;
         int columns=10;
 
         for (int i = 0; i<rows; i++) {
             for (int j = 0; j<columns; j++) {
-                System.out.print(char_array[i][j]+"-");
+
+                System.out.print(char_array[i][j]);
             }
-            System.out.println();
+            System.out.println(char_array);
         }
         return null;
     }
 
+    public static void OCR2_Char(String image_path,String data_path,boolean debug) throws Exception {
+        Tesseract tesseract = new Tesseract();
+        try {
 
+            tesseract.setDatapath("src/main/java/org/example/tessdata");
 
+            // the path of your tess data folder
+            // inside the extracted file
+            String text
+                    = tesseract.doOCR(new File("src/main/java/org/example/Picture Uploads/cross_puzzle_test.png"));
 
-    public static void OCR_Char(String image_path,String data_path,boolean debug) throws Exception {
-        //makes the Tesseract instance and fetches the image.
-        ITesseract instance = new Tesseract();
-        //primes the image for use.
-        BufferedImage picture = ImageIO.read(new File(image_path));
-        //sets the data path for the tried data
-        instance.setDatapath(data_path);
-
-        //This would be used if we are getting just one character.
-        //instance.setPageSegMode(PSM_SINGLE_CHAR);
-
-        //Makes the list for the output
-        List<Word> rows = new ArrayList<Word>(); //Initializes the List<Word> rows, which has an object for each line of the puzzle
-        //list of all the letters line by line in HOCR format
-        rows = instance.getWords(picture, ITessAPI.TessPageIteratorLevel.RIL_TEXTLINE);
-
-        //sets max confidence level container.
-        float max = 0;
-        // Error detection removing all spaces and changes all "1" to "I"
-        for (Word word : rows) {
-            String line = word.getText();
-            line = line.replace('1','I'); //replaces the misread 1's to I's
-            line = line.replaceAll("\\s", ""); //removes phantom spaces
-
-            // Used to find the max confidence.
-            if(word.getConfidence()>max){
-                max = word.getConfidence();
+            // path of your image file
+            //System.out.print(text);
+            String[] splited=text.split("\n");
+            for(String filler:splited){
+                filler = filler.replaceAll("\\s", "");
+                System.out.println(filler+filler.length());
             }
-            System.out.println(line);}
-        //used to debug the process for error detection.
-            if (debug){
-                Graphics2D g = (Graphics2D) picture.getGraphics();
-        g.setStroke(new BasicStroke(3));
-        g.setColor(Color.BLUE);
 
 
-        JLabel picLabel = new JLabel(new ImageIcon(picture));
-        JPanel jPanel = new JPanel();
-        jPanel.add(picLabel);
-        JFrame f = new JFrame();
-        f.setSize(new Dimension(picture.getWidth(), picture.getHeight()));
-        f.add(jPanel);
-        f.setVisible(true);}
-            //end of debug code
-            }
+        } catch (TesseractException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     //Backup shortcut list of letter as a word search to be used if the ocr is not working
     public static char[][] getPuzzle() {
