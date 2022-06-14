@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.EventListener;
 
 import static java.awt.Color.gray;
+import static java.awt.Color.yellow;
 import static org.example.Main.chaos;
 import static org.example.Main.puzzle;
 
@@ -145,9 +146,12 @@ public class GUI implements ActionListener
         }
         else if(e.getSource() == submitButton)
         {
-            System.out.println(chaos);
             try {
-                ImageCreator.drawArray(puzzle, gray, gray);
+                if(chaos == true){
+                    ImageCreator.drawArray(puzzle, gray, gray);
+                }else{
+                    ImageCreator.drawArray(puzzle, yellow, gray);
+                }
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             } catch (FontFormatException ex) {
