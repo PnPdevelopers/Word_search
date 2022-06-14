@@ -93,7 +93,7 @@ public class ExtraWords {
     //Creates list to add position data to be returned in image to user
     //also makes an integer to add data to this list in the loop
     //list is a 2D array with a row for every character in the word search in case of repeat word finds
-    private static Integer[][] extraCoords = new Integer[(ImageProc.getPuzzle(2).length * ImageProc.getPuzzle(2)[0].length)*(10^3)][4];
+    private static Integer[][] extraCoords = new Integer[(ImageProc.getPuzzle(1).length * ImageProc.getPuzzle(1)[0].length)*(10^3)][4];
     static int i = 0;
 
     static void extraPatternSearch(

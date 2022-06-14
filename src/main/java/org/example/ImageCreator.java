@@ -4,6 +4,8 @@ import java.awt.geom.Line2D;
 import java.awt.image.RenderedImage;
 import java.io.*;
 import java.awt.image.BufferedImage;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.imageio.ImageIO;
 
 import static java.awt.Color.*;
@@ -19,7 +21,8 @@ public class ImageCreator {
         //get the Graphics object
         Graphics g = image.getGraphics();
         //Setting font name
-        Font FiraCode = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(60f);
+        float random = (float)(ThreadLocalRandom.current().nextDouble(50, 75)); //random font size
+        Font FiraCode = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(random);
         g.setFont(FiraCode);
         //Set font color
         g.setColor(black);
@@ -31,7 +34,7 @@ public class ImageCreator {
         ImageIO.write(image, "jpg", new File(outputImage));
     }
 
-    public static void drawLine(int width, Color color, int startX, int startY, int endX, int endY, String inputImage, String outputImage) throws IOException, FontFormatException {
+    public static void drawLine(int scale, int width, Color color, int startX, int startY, int endX, int endY, String inputImage, String outputImage) throws IOException, FontFormatException {
         //System.out.println("("+startX+","+startY+") ("+endX+","+endY+")");
         //math for line positioning based on 2D array position
         int xStart = 43 + 80 * startX;
@@ -77,14 +80,14 @@ public class ImageCreator {
             //For each word, draws outer black line then inner yellow line to appear to have a black border around a yellow line
         for (Integer[] coord : ExtraWords.extraSolvedList()) {
             if (coord[0] != null) {
-                drawLine(53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
-                drawLine(50, secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(80,53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(80,50, secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
             }
         }
         for (Integer[] coord : SolveAlgorithm.solvedList()) {
             if (coord[0] != null) {
-                drawLine(53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
-                drawLine(50, primaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(85,56, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(85,53, primaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
             }
         }
 
