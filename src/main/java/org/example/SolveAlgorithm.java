@@ -61,7 +61,7 @@ class SolveAlgorithm {
     //Creates list to add position data to be returned in image to user
     //also makes an integer to add data to this list in the loop
     //list is a 2D array with a row for every character in the word search in case of repeat word finds
-    static Integer[][] coords = new Integer[(ImageProc.getPuzzle(2).length * ImageProc.getPuzzle(2)[0].length)][4];
+    private static Integer[][] coords = new Integer[(ImageProc.getPuzzle(2).length * ImageProc.getPuzzle(2)[0].length)][4];
     static int i = 0;
     static void patternSearch(
             char[][] grid,
@@ -84,10 +84,14 @@ class SolveAlgorithm {
         }
     }
 
-    static Integer[][] allWords(){
+    static void allWords(){
         List<String> words = ImageProc.getWords(2); //gets words
         for(int i = 0; i<= words.size()-1; i++){
             SolveAlgorithm.patternSearch(puzzle,words.get(i));
         }
+    }
+
+    static Integer[][] solvedList(){
+        return coords;
     }
 }

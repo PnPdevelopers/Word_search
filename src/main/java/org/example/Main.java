@@ -22,9 +22,13 @@ public class Main {
         ImageProc.OCR_Char("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png", "src/main/java/org/example/tessdata", true);
         //Image_Procs.sudo_grid("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png","src/main/java/org/example/tessdata",true);
 
-
+        SolveAlgorithm.allWords();
+        ExtraWords.extraAllWords();
 
         ImageCreator.drawArray(puzzle, yellow, green);
+
+
+
         GUI.main(null);
         //word_Highlighter.paint();
     }

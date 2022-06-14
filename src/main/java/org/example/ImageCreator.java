@@ -75,10 +75,17 @@ public class ImageCreator {
         ImageIO.write(image,"jpg", new File("src/main/java/org/example/uploads/outputImage.jpg"));
 
             //For each word, draws outer black line then inner yellow line to appear to have a black border around a yellow line
-        for (Integer[] coord : SolveAlgorithm.coords) {
+        for (Integer[] coord : ExtraWords.extraSolvedList()) {
             if (coord[0] != null) {
-                drawLine(48, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
-                drawLine(45, primaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(50, secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                System.out.println(" found at ("+coord[1]+","+coord[0]+") ("+coord[3]+","+coord[2]+")");
+            }
+        }
+        for (Integer[] coord : SolveAlgorithm.solvedList()) {
+            if (coord[0] != null) {
+                drawLine(53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(50, primaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
             }
         }
 
