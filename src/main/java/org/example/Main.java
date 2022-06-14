@@ -8,19 +8,23 @@ package org.example;
 //https://stackoverflow.com/questions/7314573/how-to-get-coordinates-of-recognized-characters#:~:text=Try%20the%20executable%20of%20tesseract.%20Use%20the%20command,the%20coordinates%20of%20each%20character%2C%20one%20per%20row.
 import java.util.List;
 
+import static java.awt.Color.green;
+import static java.awt.Color.yellow;
+
 public class Main {
+
+    static char[][] puzzle = ImageProc.getPuzzle(2); //gets puzzle
+
     //Had to change Main to not be static to account for the GUI. Just doing what the IDE told me as a suggestion.
     public static void main(String[] args) throws Exception {
         //String image_path = "cross_puzzle_test.png";
         //String data_path = "tessdata";
         ImageProc.OCR_Char("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png", "src/main/java/org/example/tessdata", true);
         //Image_Procs.sudo_grid("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png","src/main/java/org/example/tessdata",true);
-        char[][] puzzle = ImageProc.getPuzzle(2); //gets puzzle
-        List<String> words = ImageProc.getWords(2); //gets words
-        for(int i = 0; i<= words.size()-1; i++){
-            SolveAlgorithm.patternSearch(puzzle,words.get(i));
-        }
-        ImageCreator.drawArray(puzzle);
+
+
+
+        ImageCreator.drawArray(puzzle, yellow, green);
         GUI.main(null);
         //word_Highlighter.paint();
     }

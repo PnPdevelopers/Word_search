@@ -1,5 +1,9 @@
 package org.example;
 
+import java.util.List;
+
+import static org.example.Main.puzzle;
+
 class SolveAlgorithm {
 
     // Rows and columns in the given grid
@@ -77,6 +81,13 @@ class SolveAlgorithm {
                     i+=1;
                 }
             }
+        }
+    }
+
+    static Integer[][] allWords(){
+        List<String> words = ImageProc.getWords(2); //gets words
+        for(int i = 0; i<= words.size()-1; i++){
+            SolveAlgorithm.patternSearch(puzzle,words.get(i));
         }
     }
 }

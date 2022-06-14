@@ -60,7 +60,7 @@ public class ImageCreator {
     }
 
     //drawArray method to crop a blank image to the proper size, then loop the drawCharacter method to fill the cropped image with the 2D array, takes a 2D array as input
-    public static void drawArray(char[][] inputArray) throws IOException, FontFormatException {
+    public static void drawArray(char[][] inputArray, Color primaryColor, Color secondaryColor) throws IOException, FontFormatException {
 
         //load the blank image
         File imageFile = new File("src/main/java/org/example/uploads/white-background-8K.jpg");
@@ -78,7 +78,7 @@ public class ImageCreator {
         for (Integer[] coord : SolveAlgorithm.coords) {
             if (coord[0] != null) {
                 drawLine(48, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
-                drawLine(45, yellow, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(45, primaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
             }
         }
 
