@@ -277,7 +277,7 @@ public class ImageProc {
         }else if (which == 3) {
             Random r = new Random();
 
-            char[][] words = new char[ThreadLocalRandom.current().nextInt(3, 15 + 1)][ThreadLocalRandom.current().nextInt(3, 15 + 1)];
+            char[][] words = new char[ThreadLocalRandom.current().nextInt(3, 30 + 1)][ThreadLocalRandom.current().nextInt(3, 30 + 1)];
             for(char[] line: words){
                 for(int i = 0; i<line.length; i++){
                     char c = (char)(r.nextInt(26) + 'A'); //makes random character
