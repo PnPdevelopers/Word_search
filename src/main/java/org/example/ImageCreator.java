@@ -55,7 +55,7 @@ public class ImageCreator {
 
         //Setting font name
         if (chaos == true){ //Random font
-            randomNum = ThreadLocalRandom.current().nextInt(0, 4 + 1);
+            randomNum = ThreadLocalRandom.current().nextInt(0, 5 + 1);
             if (randomNum == 0){ //random font
                 g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/COMIC.TTF")).deriveFont(random));
             } else if (randomNum == 1){
@@ -66,6 +66,8 @@ public class ImageCreator {
                 g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/PAPYRUS.ttf")).deriveFont(random));
             } else if (randomNum == 4){
                 g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(random));
+            } else if (randomNum == 5){
+                g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/I Love Glitter.ttf")).deriveFont(random));
             }
 
         } else { //Nonrandom font
