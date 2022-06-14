@@ -44,6 +44,10 @@ public class Main {
         //word_Highlighter.paint();
     }
     public static void changeChaos() {
-        chaos = true;
+        if(chaos == true){
+            chaos = false;
+        }else {
+            chaos = true;
+        }
     }
 }

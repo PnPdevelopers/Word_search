@@ -26,9 +26,9 @@ public class ExtraWords {
 
 
         List<String> allWords = new ArrayList<String>();
-        //removes words that contain punctuation or numbers, and words shorter than 3 letters. capitalizes all usable words
+        //removes potential words that contain punctuation or numbers, and words shorter than 3 letters. capitalizes all usable words
         for(int i=0;i<list.size();i++){
-            if(!(list.get(i).matches("[a-zA-Z]+")) || (list.get(i).length()<4)){
+            if(!(list.get(i).matches("[a-zA-Z]+")) || (list.get(i).length()<3)){
                 list.remove(i);
             }else{
                 allWords.add(list.get(i).toUpperCase());

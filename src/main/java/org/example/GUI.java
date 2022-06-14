@@ -2,8 +2,10 @@ package org.example;
 
 import java.awt.*;
 import javax.imageio.ImageIO;
+import javax.sound.sampled.Line;
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -32,6 +34,9 @@ public class GUI implements ActionListener
     JPanel Submit;
     JPanel outputPuzzle;
     JPanel outputKey;
+    JPanel chaosPanel;
+
+    JLabel ifChaos;
 
     //Initialize child buttons for input panels
     JButton puzzleButton;
@@ -76,6 +81,9 @@ public class GUI implements ActionListener
         chaosMode.setSize(250,250);
         chaosMode.setLayout(new GridLayout(3,0));
 
+        chaosPanel = new JPanel();
+        chaosPanel.setBorder(new LineBorder(Color.black));
+
         Submit = new JPanel();
         Submit.setSize(200,200);
         Submit.setLayout(new GridLayout(3,0));
@@ -93,16 +101,21 @@ public class GUI implements ActionListener
         submitButton = new JButton("Submit");
         submitButton.addActionListener(this);
 
+        ifChaos = new JLabel("Chaos off");
+        ifChaos.setFont(new Font("Verdana",1,20));
+
         //Add everything to input panels/frame
         inputPuzzle.add(puzzleButton);
         chaosMode.add(chaosButton);
         inputKey.add(keyButton);
         Submit.add(submitButton);
+        chaosPanel.add(ifChaos);
 
         inputPanel.add(inputPuzzle, BorderLayout.EAST);
         inputPanel.add(chaosMode, BorderLayout.NORTH);
         inputPanel.add(inputKey, BorderLayout.WEST);
         inputPanel.add(Submit, BorderLayout.SOUTH);
+        inputPanel.add(chaosPanel, BorderLayout.CENTER);
 
         mainFrame.add(inputPanel);
         mainFrame.pack();
@@ -143,6 +156,12 @@ public class GUI implements ActionListener
         else if (e.getSource() == chaosButton)
         {
             Main.changeChaos();
+            if (chaos == true){
+                ifChaos.setText("Chaos on");
+            }else{
+                ifChaos.setText("Chaos off");
+            }
+
         }
         else if(e.getSource() == submitButton)
         {
