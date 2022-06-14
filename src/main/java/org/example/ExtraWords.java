@@ -27,7 +27,7 @@ public class ExtraWords {
         List<String> allWords = new ArrayList<String>();
         //removes words that contain punctuation or numbers, and words shorter than 3 letters. capitalizes all usable words
         for(int i=0;i<list.size();i++){
-            if(!(list.get(i).matches("[a-zA-Z]+")) || (list.get(i).length()<3)){
+            if(!(list.get(i).matches("[a-zA-Z]+")) || (list.get(i).length()<4)){
                 list.remove(i);
             }else{
                 allWords.add(list.get(i).toUpperCase());
@@ -81,6 +81,7 @@ public class ExtraWords {
                 //Since the algorithm finishes one letter past the end of the word, take a step back by inversing the direction data to get the end coordinate of the word.
                 eR = rd + (-1*x[dir]);
                 eC = cd + (-1 * y[dir]);
+                System.out.println(word+" found at ("+col+","+row+") ("+eC+","+eR+")");
                 return true;
             }
         }

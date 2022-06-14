@@ -79,7 +79,6 @@ public class ImageCreator {
             if (coord[0] != null) {
                 drawLine(53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
                 drawLine(50, secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
-                System.out.println(" found at ("+coord[1]+","+coord[0]+") ("+coord[3]+","+coord[2]+")");
             }
         }
         for (Integer[] coord : SolveAlgorithm.solvedList()) {
