@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.imageio.ImageIO;
 
 import static java.awt.Color.*;
+import static org.example.Main.chaos;
 
 public class ImageCreator {
     //drawCharacter method for adding individual characters to an image using the character, it's position in a 2D array, and the input and output image file names
@@ -25,7 +26,7 @@ public class ImageCreator {
 
         float random = 0f;
 
-        if(Main.chaos == true){ // chaos code
+        if(chaos == true){ // chaos code
 
             random = (float)(ThreadLocalRandom.current().nextDouble(10, 100)); //random font size
 
@@ -111,11 +112,20 @@ public class ImageCreator {
         //save the cropped image
         ImageIO.write(image,"jpg", new File("src/main/java/org/example/uploads/outputImage.jpg"));
 
+
+
+
             //For each word, draws outer black line then inner yellow line to appear to have a black border around a yellow line
         for (Integer[] coord : ExtraWords.extraSolvedList()) {
             if (coord[0] != null) {
-                drawLine(80,53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
-                drawLine(80,50, secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                if(chaos == true){
+                    drawLine(ThreadLocalRandom.current().nextInt(70, 90 + 1),ThreadLocalRandom.current().nextInt(40, 50 + 1), black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                    drawLine(ThreadLocalRandom.current().nextInt(70, 90 + 1),ThreadLocalRandom.current().nextInt(40, 50 + 1), secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                }else{
+                    drawLine(80,53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                    drawLine(80,50, secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                }
+
             }
         }
         for (Integer[] coord : SolveAlgorithm.solvedList()) {
