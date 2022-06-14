@@ -19,7 +19,7 @@ public class ImageCreator {
         //get the Graphics object
         Graphics g = image.getGraphics();
         //Setting font name
-        Font FiraCode = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/FiraCode-Bold1.ttf")).deriveFont(60f);
+        Font FiraCode = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(60f);
         g.setFont(FiraCode);
         //Set font color
         g.setColor(black);
@@ -63,7 +63,7 @@ public class ImageCreator {
     public static void drawArray(char[][] inputArray) throws IOException, FontFormatException {
 
         //load the blank image
-        File imageFile = new File("src/main/java/org/example/white-background-8K.jpg");
+        File imageFile = new File("src/main/java/org/example/uploads/white-background-8K.jpg");
         BufferedImage bufferedImage = ImageIO.read(imageFile);
 
         //determine the height/width of the cropped image
@@ -72,13 +72,13 @@ public class ImageCreator {
         BufferedImage croppedImage = bufferedImage.getSubimage(0, 0, outputImageLength-1, outputImageHeight-1);
         RenderedImage image = croppedImage;
         //save the cropped image
-        ImageIO.write(image,"jpg", new File("src/main/java/org/example/outputImage.jpg"));
+        ImageIO.write(image,"jpg", new File("src/main/java/org/example/uploads/outputImage.jpg"));
 
             //For each word, draws outer black line then inner yellow line to appear to have a black border around a yellow line
         for (Integer[] coord : SolveAlgorithm.coords) {
             if (coord[0] != null) {
-                drawLine(48, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
-                drawLine(45, yellow, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
+                drawLine(48, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                drawLine(45, yellow, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
             }
         }
 
@@ -86,7 +86,7 @@ public class ImageCreator {
         //loop to fill the blank image with the input 2D array
         for (int i = 0; i < inputArray.length; i++) {
             for (int j = 0; j < inputArray[i].length; j++) {
-                drawCharacter(inputArray[i][j], j, i, "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
+                drawCharacter(inputArray[i][j], j, i, "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
             }
         }
 

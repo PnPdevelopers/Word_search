@@ -126,7 +126,7 @@ public class GUI implements ActionListener
         }
         else if(e.getSource() == submitButton)
         {
-            String path = "src/main/java/org/example/outputImage.jpg";
+            String path = "src/main/java/org/example/uploads/outputImage.jpg";
             File file = new File(path);
             BufferedImage image = null;
             try {

@@ -224,7 +224,7 @@ public class ImageProc {
             // the path of your tess data folder
             // inside the extracted file
             String text
-                    = tesseract.doOCR(new File("src/main/java/org/example/Picture Uploads/cross_puzzle_test.png"));
+                    = tesseract.doOCR(new File("src/main/java/org/example/uploads/cross_puzzle_test.png"));
 
             // path of your image file
             //System.out.print(text);
