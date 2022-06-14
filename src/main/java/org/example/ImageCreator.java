@@ -9,6 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import javax.imageio.ImageIO;
 
 import static java.awt.Color.*;
+import static java.awt.Font.*;
 import static org.example.Main.chaos;
 
 public class ImageCreator {
@@ -53,12 +54,23 @@ public class ImageCreator {
 
 
         //Setting font name
+        if (chaos == true){ //Random font
+            randomNum = ThreadLocalRandom.current().nextInt(0, 4 + 1);
+            if (randomNum == 0){ //random font
+                g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/COMIC.TTF")).deriveFont(random));
+            } else if (randomNum == 1){
+                g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/digital-7.ttf")).deriveFont(random));
+            } else if (randomNum == 2){
+                g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/DSMarkerFelt.ttf")).deriveFont(random));
+            } else if (randomNum == 3){
+                g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/PAPYRUS.ttf")).deriveFont(random));
+            } else if (randomNum == 4){
+                g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(random));
+            }
 
-        Font FiraCode = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(random);
-        g.setFont(FiraCode);
-        //Set font color
-
-
+        } else { //Nonrandom font
+            g.setFont(Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(random));
+        }
 
 
         //display the text at the coordinates
@@ -115,12 +127,12 @@ public class ImageCreator {
 
 
 
-            //For each word, draws outer black line then inner yellow line to appear to have a black border around a yellow line
-        for (Integer[] coord : ExtraWords.extraSolvedList()) {
+            //For each word, draws outer black line then inner colored line to appear to have a black border around a colored line
+        for (Integer[] coord : ExtraWords.extraSolvedList()) { //Extra words
             if (coord[0] != null) {
                 if(chaos == true){
-                    drawLine(ThreadLocalRandom.current().nextInt(70, 90 + 1),ThreadLocalRandom.current().nextInt(40, 50 + 1), black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
-                    drawLine(ThreadLocalRandom.current().nextInt(70, 90 + 1),ThreadLocalRandom.current().nextInt(40, 50 + 1), secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                    drawLine(ThreadLocalRandom.current().nextInt(70, 90 + 1),ThreadLocalRandom.current().nextInt(40, 60 + 1), black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                    drawLine(ThreadLocalRandom.current().nextInt(70, 90 + 1),ThreadLocalRandom.current().nextInt(40, 60 + 1), secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
                 }else{
                     drawLine(80,53, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
                     drawLine(80,50, secondaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
@@ -128,10 +140,16 @@ public class ImageCreator {
 
             }
         }
-        for (Integer[] coord : SolveAlgorithm.solvedList()) {
+        for (Integer[] coord : SolveAlgorithm.solvedList()) { //Word search key words
             if (coord[0] != null) {
-                drawLine(85,56, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
-                drawLine(85,53, primaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                if(chaos == true){
+                    drawLine(ThreadLocalRandom.current().nextInt(70, 90 + 1),ThreadLocalRandom.current().nextInt(40, 60 + 1), black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                    drawLine(ThreadLocalRandom.current().nextInt(70, 90 + 1),ThreadLocalRandom.current().nextInt(40, 60 + 1), primaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                }else{
+                    drawLine(85,56, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                    drawLine(85,53, primaryColor, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/uploads/outputImage.jpg", "src/main/java/org/example/uploads/outputImage.jpg");
+                }
+
             }
         }
 
