@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 
 import static java.awt.Color.*;
 
-public class image_Creator {
+public class ImageCreator {
     //drawCharacter method for adding individual characters to an image using the character, it's position in a 2D array, and the input and output image file names
     public static void drawCharacter(char chara, int xPos, int yPos, String inputImage, String outputImage) throws IOException, FontFormatException {
         //define the position of the letter
@@ -46,7 +46,7 @@ public class image_Creator {
         BufferedImage image = ImageIO.read(new File(inputImage));
         //get the Graphics object
         Graphics g = image.getGraphics();
-        image_Creator.paintComponent(width, color, g ,xStart,yStart,xEnd,yEnd);
+        ImageCreator.paintComponent(width, color, g ,xStart,yStart,xEnd,yEnd);
         g.dispose();
         //write the image
         ImageIO.write(image, "jpg", new File(outputImage));
@@ -75,7 +75,7 @@ public class image_Creator {
         ImageIO.write(image,"jpg", new File("src/main/java/org/example/outputImage.jpg"));
 
             //For each word, draws outer black line then inner yellow line to appear to have a black border around a yellow line
-        for (Integer[] coord : GFG.coords) {
+        for (Integer[] coord : SolveAlgorithm.coords) {
             if (coord[0] != null) {
                 drawLine(48, black, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");
                 drawLine(45, yellow, coord[1], coord[0], coord[3], coord[2], "src/main/java/org/example/outputImage.jpg", "src/main/java/org/example/outputImage.jpg");

@@ -5,7 +5,6 @@ package org.example;
 import net.sourceforge.tess4j.*;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -14,11 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
-
 //import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
 
-public class Image_Procs {
+public class ImageProc {
 
     public static int find_next_column_start(int Start,BufferedImage image){
         for(int W=Start;W<= image.getHeight()-1;W++){
