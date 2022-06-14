@@ -21,7 +21,7 @@ public class ImageCreator {
         //get the Graphics object
         Graphics g = image.getGraphics();
         //Setting font name
-        float random = (float)(ThreadLocalRandom.current().nextDouble(50, 75)); //random font size
+        float random = (float)(ThreadLocalRandom.current().nextDouble(10, 100)); //random font size
         Font FiraCode = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(random);
         g.setFont(FiraCode);
         //Set font color
