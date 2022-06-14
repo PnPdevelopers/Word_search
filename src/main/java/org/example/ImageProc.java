@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 //import static net.sourceforge.tess4j.ITessAPI.TessPageSegMode.PSM_SINGLE_CHAR;
 
@@ -242,7 +244,7 @@ public class ImageProc {
 
 
     //Backup shortcut list of letter as a word search to be used if the ocr is not working
-    public static char[][] getPuzzle(int which) {
+    public static char[][] makePuzzle(int which) {
         char[][] blank = new char[0][0];
         if (which == 1) {
             char[][] words = {
@@ -258,8 +260,7 @@ public class ImageProc {
                     {'H', 'E', 'L', 'W', 'S', 'L', 'E', 'U', 'T', 'H'},
             };
             return words;
-        }
-        if (which == 2) {
+        }else if (which == 2) {
             char[][] words = {
                     {'V', 'B', 'R', 'E', 'E', 'F', 'I', 'S', 'H', 'R', 'A', 'C', 'H', 'P'},
                     {'A', 'N', 'A', 'C', 'R', 'O', 'C', 'O', 'D', 'I', 'L', 'E', 'E', 'B'},
@@ -273,9 +274,26 @@ public class ImageProc {
                     {'H', 'A', 'N', 'Y', 'T', 'A', 'E', 'K', 'N', 'I', 'N', 'A', 'W', 'A'},
             };
             return words;
+        }else if (which == 3) {
+            Random r = new Random();
+
+            char[][] words = new char[ThreadLocalRandom.current().nextInt(3, 15 + 1)][ThreadLocalRandom.current().nextInt(3, 15 + 1)];
+            for(char[] line: words){
+                for(int i = 0; i<line.length; i++){
+                    char c = (char)(r.nextInt(26) + 'A'); //makes random character
+                    line[i] = c; //populates list
+                    System.out.print(line[i]);
+                }
+                System.out.println("");
+            }
+
+            return words;
         }
         return blank;
     }
+
+
+
 
     //Backup shortcut list of key words to be used if the ocr is not working
     public static List<String> getWords(int which) {
@@ -293,8 +311,7 @@ public class ImageProc {
                     "HORIZONTAL",
                     "WORDSEARCH"
             );
-        }
-        if(which == 2){
+        }else if(which == 2){
             puzzle = Arrays.asList(
                     "FISH",
                     "CROCODILE",
@@ -314,6 +331,9 @@ public class ImageProc {
                     "DOLPHIN",
                     "AARDVARK"
             );
+        }else if (which ==3){
+            puzzle = Arrays.asList( //necessary for errors
+                    "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH");
         }
 
         return puzzle;

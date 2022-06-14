@@ -50,6 +50,7 @@ class SolveAlgorithm {
                 //Since the algorithm finishes one letter past the end of the word, take a step back by inversing the direction data to get the end coordinate of the word.
                 eR = rd + (-1*x[dir]);
                 eC = cd + (-1 * y[dir]);
+                System.out.println(word+" found at ("+col+","+row+") ("+eC+","+eR+")");
                 return true;
             }
         }
@@ -61,7 +62,7 @@ class SolveAlgorithm {
     //Creates list to add position data to be returned in image to user
     //also makes an integer to add data to this list in the loop
     //list is a 2D array with a row for every character in the word search in case of repeat word finds
-    private static Integer[][] coords = new Integer[(ImageProc.getPuzzle(1).length * ImageProc.getPuzzle(1)[0].length)][4];
+    private static Integer[][] coords = new Integer[(puzzle.length * puzzle.length)][4];
     static int i = 0;
     static void patternSearch(
             char[][] grid,
@@ -72,6 +73,7 @@ class SolveAlgorithm {
         // Consider every point as starting point and search given word
         for (int row = 0; row < R; row++) {
             for (int col = 0; col < C; col++) {
+                //System.out.println(search2D(grid,row,col,word));
                 if (grid[row][col]==word.charAt(0) && search2D(grid,row,col,word)){
                     //Append coordinate data of successful word finds to global 2D array of coordinates
                     coords[i][0] = row;
@@ -85,9 +87,8 @@ class SolveAlgorithm {
     }
 
     static void allWords(){
-        List<String> words = ImageProc.getWords(1); //gets words
-        for(int i = 0; i<= words.size()-1; i++){
-            SolveAlgorithm.patternSearch(puzzle,words.get(i));
+        for(String word :ImageProc.getWords(3)){
+            SolveAlgorithm.patternSearch(puzzle,word);
         }
     }
 

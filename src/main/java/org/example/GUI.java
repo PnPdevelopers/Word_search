@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.EventListener;
 
+import static java.awt.Color.gray;
+import static org.example.Main.chaos;
+import static org.example.Main.puzzle;
+
 public class GUI implements ActionListener
 {
     //For the record: This is the 3rd time that I have rewritten the GUI Code. I pray that this doesn't get deleted.
@@ -23,8 +27,8 @@ public class GUI implements ActionListener
     JPanel outputPanel;
     JPanel inputPuzzle;
     JPanel inputKey;
+    JPanel chaosMode;
     JPanel Submit;
-
     JPanel outputPuzzle;
     JPanel outputKey;
 
@@ -32,6 +36,9 @@ public class GUI implements ActionListener
     JButton puzzleButton;
     JButton keyButton;
     JButton submitButton;
+    JButton chaosButton;
+
+
 
     //Initialize Image icons for output frame
 
@@ -42,7 +49,6 @@ public class GUI implements ActionListener
 
     public GUI()
     {
-
         //Locally declare main JFrame
         mainFrame = new JFrame();
         mainFrame.setDefaultCloseOperation(mainFrame.EXIT_ON_CLOSE);
@@ -65,6 +71,10 @@ public class GUI implements ActionListener
         inputKey.setSize(250,250);
         inputKey.setLayout(new GridLayout(3,0));
 
+        chaosMode = new JPanel();
+        chaosMode.setSize(250,250);
+        chaosMode.setLayout(new GridLayout(3,0));
+
         Submit = new JPanel();
         Submit.setSize(200,200);
         Submit.setLayout(new GridLayout(3,0));
@@ -76,15 +86,20 @@ public class GUI implements ActionListener
         keyButton = new JButton("Upload key");
         keyButton.addActionListener(this);
 
+        chaosButton = new JButton("Chaos Mode");
+        chaosButton.addActionListener(this);
+
         submitButton = new JButton("Submit");
         submitButton.addActionListener(this);
 
         //Add everything to input panels/frame
         inputPuzzle.add(puzzleButton);
+        chaosMode.add(chaosButton);
         inputKey.add(keyButton);
         Submit.add(submitButton);
 
         inputPanel.add(inputPuzzle, BorderLayout.EAST);
+        inputPanel.add(chaosMode, BorderLayout.NORTH);
         inputPanel.add(inputKey, BorderLayout.WEST);
         inputPanel.add(Submit, BorderLayout.SOUTH);
 
@@ -124,8 +139,24 @@ public class GUI implements ActionListener
         {
             //API CODE HERE
         }
+        else if (e.getSource() == chaosButton)
+        {
+            System.out.println("penis");
+            Main.changeChaos();
+            System.out.println(chaos);
+
+        }
         else if(e.getSource() == submitButton)
         {
+            System.out.println(chaos);
+            try {
+                ImageCreator.drawArray(puzzle, gray, gray);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            } catch (FontFormatException ex) {
+                throw new RuntimeException(ex);
+            }
+
             String path = "src/main/java/org/example/uploads/outputImage.jpg";
             File file = new File(path);
             BufferedImage image = null;

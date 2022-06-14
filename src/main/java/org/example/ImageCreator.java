@@ -20,12 +20,46 @@ public class ImageCreator {
         BufferedImage image = ImageIO.read(new File(inputImage));
         //get the Graphics object
         Graphics g = image.getGraphics();
+
+        int randomNum = ThreadLocalRandom.current().nextInt(0, 6 + 1);
+
+        float random = 0f;
+
+        if(Main.chaos == true){ // chaos code
+
+            random = (float)(ThreadLocalRandom.current().nextDouble(10, 100)); //random font size
+
+            if (randomNum == 0){ //random color
+                g.setColor(black);
+            } else if (randomNum == 1){
+                g.setColor(red);
+            } else if (randomNum == 2){
+                g.setColor(orange);
+            } else if (randomNum == 3){
+                g.setColor(yellow);
+            } else if (randomNum == 4){
+                g.setColor(green);
+            } else if (randomNum == 5){
+                g.setColor(blue);
+            } else if (randomNum == 6){
+                g.setColor(magenta);
+            }
+        }else{
+            g.setColor(black);
+            random = (float)(ThreadLocalRandom.current().nextDouble(65, 65.0001)); //unnoticeable difference
+        }
+
+
+
         //Setting font name
-        float random = (float)(ThreadLocalRandom.current().nextDouble(10, 100)); //random font size
+
         Font FiraCode = Font.createFont(Font.TRUETYPE_FONT, new File("src/main/java/org/example/uploads/FiraCode-Bold1.ttf")).deriveFont(random);
         g.setFont(FiraCode);
         //Set font color
-        g.setColor(black);
+
+
+
+
         //display the text at the coordinates
         String Schara = Character.toString(chara);
         g.drawString(Schara, xCord, yCord);

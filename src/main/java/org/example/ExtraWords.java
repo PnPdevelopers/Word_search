@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 import static java.awt.Color.black;
 import static java.awt.Color.green;
+import static org.example.Main.allWords;
 import static org.example.Main.puzzle;
 
 public class ExtraWords {
@@ -93,18 +94,21 @@ public class ExtraWords {
     //Creates list to add position data to be returned in image to user
     //also makes an integer to add data to this list in the loop
     //list is a 2D array with a row for every character in the word search in case of repeat word finds
-    private static Integer[][] extraCoords = new Integer[(ImageProc.getPuzzle(1).length * ImageProc.getPuzzle(1)[0].length)*(10^3)][4];
+    private static Integer[][] extraCoords = new Integer[(puzzle.length * puzzle.length)*(10^3)][4];
     static int i = 0;
 
     static void extraPatternSearch(
             char[][] grid,
             String word)
     {
+
+
         R = grid.length;
         C = grid[0].length;
         // Consider every point as starting point and search given word
         for (int row = 0; row < R; row++) {
             for (int col = 0; col < C; col++) {
+                //System.out.println(extraSearch2D(grid,row,col,word));
                 if (grid[row][col]==word.charAt(0) && extraSearch2D(grid,row,col,word)){
                     //Append coordinate data of successful word finds to global 2D array of coordinates
                     extraCoords[i][0] = row;
@@ -117,10 +121,9 @@ public class ExtraWords {
         }
     }
 
-    static void extraAllWords() throws IOException, FontFormatException {
-        List<String> words = makeList(); //gets words
-        for(int i = 0; i<= words.size()-1; i++){
-            extraPatternSearch(puzzle,words.get(i));
+    static void extraAllWords(){
+        for(String word : allWords){
+            extraPatternSearch(puzzle,word);
         }
     }
 
