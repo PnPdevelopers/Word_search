@@ -282,9 +282,7 @@ public class ImageProc {
                 for(int i = 0; i<line.length; i++){
                     char c = (char)(r.nextInt(26) + 'A'); //makes random character
                     line[i] = c; //populates list
-                    System.out.print(line[i]);
                 }
-                System.out.println("");
             }
 
             return words;

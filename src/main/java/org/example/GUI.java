@@ -141,10 +141,7 @@ public class GUI implements ActionListener
         }
         else if (e.getSource() == chaosButton)
         {
-            System.out.println("penis");
             Main.changeChaos();
-            System.out.println(chaos);
-
         }
         else if(e.getSource() == submitButton)
         {
