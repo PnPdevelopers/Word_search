@@ -62,7 +62,7 @@ public class GUI implements ActionListener
         mainFrame.setTitle("Input Puzzle + Key Below");
 
         //New Icon:
-        ImageIcon icon = new ImageIcon("src/main/java/org/example/logo.png");
+        ImageIcon icon = new ImageIcon("src/main/java/org/example/logo.jpg");
         mainFrame.setIconImage(icon.getImage());
 
         //Locally declare input JPanels
