@@ -17,9 +17,16 @@ public class Main {
         //sudo_grid("src/main/java/org/example/outputImage.jpg","tessdata",true);
         //String image_path = "cross_puzzle_test.png";
         //String data_path = "tessdata";
+<<<<<<< Updated upstream
         Image_Procs.OCR2_Char("src/main/java/org/example/outputImage.jpg", "tessdata", true);
         char[][] puzzle = Image_Procs.getPuzzle();
         List<String> words = Image_Procs.getWords();
+=======
+        //Image_Procs.OCR_Char("src/main/java/org/example/Picture Uploads/be_safe_word_search-1.png", "src/main/java/org/example/tessdata", true);
+        Image_Procs.sudo_grid("src/main/java/org/example/outputImage_safe.jpg","src/main/java/org/example/tessdata",true);
+        char[][] puzzle = Image_Procs.getPuzzle(1); //gets puzzle
+        List<String> words = Image_Procs.getWords(1); //gets words
+>>>>>>> Stashed changes
         for(int i = 0; i<= words.size()-1; i++){
             GFG.patternSearch(puzzle,words.get(i));
             System.out.println(
